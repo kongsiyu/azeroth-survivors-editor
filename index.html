@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Azeroth Survivors | Save Editor — Talents, Armory & Zones</title>
-<meta name="description" content="Offline Azeroth Survivors save editor: visual talent trees and a 498-piece equipment collection armory. Armory extension by Shilen.">
-<meta name="theme-color" content="#14171c">
+<title>Azeroth Survivors Save Editor v1.5 | Shilen</title>
+<meta name="description" content="Azeroth Survivors Save Editor v1.5: edit talent trees, collect 498 equipment pieces, manage zone progress and perk resets. Runs locally in your browser.">
+<meta name="theme-color" content="#0d1118">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Alegreya+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>:root{--bg:#e9ebef;--panel:#f7f8fa;--panel2:#eceef2;--line:#cfd3db;--fg:#1b1e24;--mute:#5d6472;--accent:#8a5a0c;--accent-ink:#ffffff;--accent-soft:#f0e2c4;--good:#1f7a4a;--bad:#b3341f;--tile:#d9dce3;--display:"Marcellus SC","Trajan Pro",Georgia,serif;--body:"Alegreya Sans","Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c0e11;--panel:#14171c;--panel2:#1a1e25;--line:#2b313b;--fg:#e8e4da;--mute:#8d94a1;--accent:#e0ac4a;--accent-ink:#1a1204;--accent-soft:#2b2312;--good:#6fcf97;--bad:#ff8a73;--tile:#222831;color-scheme:dark}}:root[data-theme=dark]{--bg:#0c0e11;--panel:#14171c;--panel2:#1a1e25;--line:#2b313b;--fg:#e8e4da;--mute:#8d94a1;--accent:#e0ac4a;--accent-ink:#1a1204;--accent-soft:#2b2312;--good:#6fcf97;--bad:#ff8a73;--tile:#222831;color-scheme:dark}*{box-sizing:border-box}body{background:var(--bg);color:var(--fg);font:16px/1.45 var(--body);padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}.wrap{max-width:1180px;margin:0 auto;display:grid;gap:16px}h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.04em;margin:0;text-wrap:balance}h1{font-size:clamp(26px,4vw,38px);color:var(--accent)}h2{font-size:18px}.sub{color:var(--mute);margin:4px 0 0;max-width:62ch}button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.btn{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:7px 12px;font-weight:500}.btn:hover{border-color:var(--accent)}.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}.btn.small{padding:4px 9px;font-size:14px}.btn[disabled]{opacity:.45;cursor:not-allowed}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px}.head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between}.tag{font:12px var(--mono);color:var(--mute);letter-spacing:.06em;text-transform:uppercase}.load{padding:14px 16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.drop{flex:1 1 320px;min-width:0;border:1.5px dashed var(--line);border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.drop.over{border-color:var(--accent);background:var(--accent-soft)}.drop b{font-weight:700}.file-name{font:13px var(--mono);color:var(--mute);overflow-wrap:anywhere}#msg{position:sticky;top:8px;z-index:10}.notice{padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);font-size:15px}.notice.warn{border-color:var(--accent);background:var(--accent-soft)}.notice.err{border-color:var(--bad);color:var(--bad)}details.paste summary{cursor:pointer;color:var(--mute);font-size:14px}textarea.mono{width:100%;min-height:90px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px;font:12px/1.4 var(--mono);resize:vertical}.editor{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:start}.rail{padding:8px;display:grid;gap:4px;position:sticky;top:12px}.cls{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:0 0;border:1px solid transparent;border-radius:7px;padding:8px 9px}.cls:hover{background:var(--panel2)}.cls[aria-pressed=true]{background:var(--panel2);border-color:var(--accent)}.cls i{width:11px;height:11px;border-radius:3px;flex:none;background:var(--c)}.cls .n{flex:1;min-width:0}.cls .pts{font:12px var(--mono);color:var(--mute)}.cls.absent .n{color:var(--mute)}.main{display:grid;gap:12px;min-width:0}.bar{padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}.bar .l{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}.spent{font:500 24px var(--display);letter-spacing:.03em}.spent small{font:13px var(--mono);color:var(--mute);letter-spacing:0}.xp{display:flex;gap:8px;align-items:center}.xp input[type=number]{width:9.5em;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-family:var(--mono);font-variant-numeric:tabular-nums}.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}.seg button{border:0;border-radius:0;background:var(--panel2);padding:6px 12px;font-weight:500}.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}label.chk{display:inline-flex;gap:6px;align-items:center;font-size:15px}.trees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.tree{padding:12px 12px 10px;min-width:0}.tree header{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}.tree header .p{font:13px var(--mono);color:var(--mute)}.grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(7,minmax(64px,1fr));justify-items:center;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 6px}.grid svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.grid svg line{stroke:var(--line);stroke-width:3;vector-effect:non-scaling-stroke}.grid svg line.on{stroke:var(--good)}.t{position:relative;width:min(100%,56px);aspect-ratio:1;border-radius:9px;border:2px solid var(--line);background:var(--tile);padding:0;overflow:hidden;display:grid;place-items:center}.t img{width:100%;height:100%;display:block;object-fit:cover;opacity:.55}.t .ch{position:absolute;inset:0;display:grid;place-items:center;font:500 22px var(--display);color:var(--mute)}.t .rk{position:absolute;right:0;bottom:0;background:var(--bg);color:var(--fg);font:11px var(--mono);padding:1px 4px;border-top-left-radius:5px;border-top:1px solid var(--line);border-left:1px solid var(--line)}.t.open{border-color:var(--fg)}.t.open img{opacity:1}.t.part{border-color:var(--good)}.t.part img{opacity:1}.t.part .rk{color:var(--good)}.t.full{border-color:var(--accent)}.t.full img{opacity:1}.t.full .rk{color:var(--accent)}.t.lock{filter:saturate(.3)}.t.mile{border-radius:14px}.t.sel{outline:2px solid var(--accent);outline-offset:2px}.t:hover{transform:translateY(-1px)}.tree .acts{display:flex;gap:6px;margin-top:8px}.detail{padding:12px 14px;min-height:92px;display:grid;gap:2px}.detail h3{font-size:17px;color:var(--accent)}.detail .m{font:12px var(--mono);color:var(--mute)}.detail .need{color:var(--bad);font-size:14px}.detail p{margin:2px 0 0;max-width:80ch}.out{padding:14px 16px;display:grid;gap:10px}.out .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ver{font:13px var(--mono);color:var(--good)}.ver.bad{color:var(--bad)}.hint{color:var(--mute);font-size:14px;margin:0}pre.plain{margin:0;max-height:220px;overflow:auto;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.5 var(--mono);white-space:pre}.empty{padding:28px 16px;text-align:center;color:var(--mute)}@media (max-width:900px){.editor{grid-template-columns:minmax(0,1fr)}.rail{position:static;grid-template-columns:repeat(3,minmax(0,1fr))}.trees{grid-template-columns:minmax(0,1fr)}.grid{max-width:420px;margin:0 auto}}@media (max-width:520px){.rail{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (prefers-reduced-motion:reduce){.t:hover{transform:none}}.srow{display:grid;grid-template-columns:7em 1fr 1fr;gap:8px;font:13px var(--mono);padding:2px 0}.out input[type=text],.out select{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 8px}.out input[type=text]{width:12em}</style>
@@ -168,9 +168,10 @@ function mergeAndVerify(){
 $('am-export').onclick=()=>{if(!loaded())return status('Open a save first');try{
   const {result,count,classes}=mergeAndVerify(),sealed=G(result);
   if(h(sealed)!==result)throw Error('Encryption round-trip failed');
-  download(sealed,'AzerothSurvivors_Talents_Armory_Zones_v1.2.sav');
+  download(sealed,'AzerothSurvivors_Editor_v1.5.sav');
   status('✓ Verified export: '+classes+' talent records (XP + ranks preserved), '+count+'/498 equipment IDs.');
-}catch(err){status('Export blocked: '+err.message);console.error(err)}};
+  document.dispatchEvent(new CustomEvent('as15:export',{detail:{success:true}}));
+}catch(err){status('Export blocked: '+err.message);console.error(err);document.dispatchEvent(new CustomEvent('as15:export',{detail:{success:false,message:err.message}}));}};
 $('am-backup').onclick=()=>{if(!loaded())return status('Open a save first');download(window.__armoryImportedRaw||G(Y.plain),'AzerothSurvivors_UNTOUCHED_Backup.sav')};
 $('file').addEventListener('change',async e=>{let f=e.target.files?.[0];if(f)window.__armoryImportedRaw=await f.text();setTimeout(render,300);setTimeout(render,900)});
 $('usePaste').addEventListener('click',()=>{window.__armoryImportedRaw=$('paste').value.trim();setTimeout(render,300);setTimeout(render,900)});
@@ -192,6 +193,57 @@ cid.addEventListener('change',()=>{zcid.value=cid.value;renderZones();});
 zcid.addEventListener('change',()=>{cid.value=zcid.value;render();});
 setInterval(syncSelectedClass,150);
 setTimeout(()=>{syncSelectedClass();render();renderZones();},600);
+
+// v1.5 read-only integration bridge. All modifications still use v1.4's
+// established talent serializer and one verified encrypted exporter.
+window.__AS_EDITOR_BRIDGE={
+  snapshot(){
+    if(!loaded())return null;
+    const original=Y.plain.split(/\r?\n/);
+    const serialized=e();
+    const live=serialized.split(/\r?\n/);
+    const sourceTal=talentRecords(original),nowTal=talentRecords(live);
+    const src=new Map(sourceTal.map(t=>[t.id,t.xp+'|'+t.ranks]));
+    const now=new Map(nowTal.map(t=>[t.id,t.xp+'|'+t.ranks]));
+    const editedTalentClasses=[...new Set([...src.keys(),...now.keys()])].filter(k=>src.get(k)!==now.get(k));
+    const sourceItems=parseItems(original);
+    const currentItems=equipmentDraft||parseItems(Y.lines);
+    const known=new Set(all());
+    const added=[...currentItems].filter(x=>known.has(x)&&!sourceItems.has(x));
+    const removed=[...sourceItems].filter(x=>known.has(x)&&!currentItems.has(x));
+    const changedZones=[];
+    const zoneFingerprint=[];
+    for(const [cls,st] of Object.entries(zoneDraft||{})){
+      const prior=zoneRecord(original,'beat',cls);
+      const a=[...st.beat].filter(k=>!prior.has(k)),r=[...prior].filter(k=>!st.beat.has(k));
+      if(a.length||r.length)changedZones.push({cls,name:classes[cls],added:a.length,removed:r.length});
+      zoneFingerprint.push([cls,[...st.beat].sort()]);
+    }
+    const sourcePick=original.find(l=>l.startsWith('pick|'))||'';
+    const nowPick=live.find(l=>l.startsWith('pick|'))||'';
+    const characterChanged=sourcePick!==nowPick;
+    const perksChanged=perkResetDraft!==null&&perkResetDraft!==originalResetRecord();
+    const areas=[
+      ...(editedTalentClasses.length?['Talents']:[]),
+      ...(added.length||removed.length?['Equipment']:[]),
+      ...(changedZones.length?['Zones']:[]),
+      ...(perksChanged?['Perks']:[]),
+      ...(characterChanged?['Character']:[])
+    ];
+    return {
+      demo:!!Y.example,
+      classId:String(Y.cur),className:classes[String(Y.cur)]||'Character',
+      name:document.getElementById('pickname')?.value||'',
+      areas,editedTalentClasses,added:added.length,removed:removed.length,
+      changedZones,perksChanged,characterChanged,
+      collected:[...all()].filter(id=>currentItems.has(id)).length,
+      classCollected:ids(String(Y.cur)).filter(id=>currentItems.has(id)).length,
+      classTotal:ids(String(Y.cur)).length,
+      fingerprint:JSON.stringify([serialized,[...currentItems].sort(),zoneFingerprint.sort((a,b)=>a[0].localeCompare(b[0])),perkResetDraft]),
+      importKey:Y.plain
+    };
+  }
+};
 })();
 </script>
 
@@ -246,5 +298,403 @@ setTimeout(()=>{syncSelectedClass();render();renderZones();},600);
   setTimeout(hideOldExports,600);
 })();
 </script>
+
+<style id="as15-design">
+/* v1.5 interface layer: no changes to the game save format. */
+html{scroll-behavior:smooth;scroll-padding-top:112px}
+body{margin:0;min-height:100vh;padding:0 0 126px!important;background:radial-gradient(ellipse 90% 550px at 50% -90px,rgba(156,113,37,.13),transparent 75%),var(--bg);font-family:var(--body);font-size:15px;letter-spacing:.006em}
+body:before{content:"";position:absolute;inset:0 0 auto;height:400px;background:linear-gradient(90deg,transparent,rgba(227,176,77,.028),transparent);pointer-events:none}
+:root[data-theme=dark]{--bg:#0b0e13;--panel:#131920;--panel2:#1b232b;--line:#29323b;--fg:#eae8e2;--mute:#98a3af;--accent:#dfb867;--accent-ink:#191307;--accent-soft:#272217;--good:#73d9a5;--bad:#ff937e;--tile:#20272e}
+:root[data-theme=light]{--bg:#f0eee8;--panel:#fcfaf6;--panel2:#f1eee6;--line:#d9d4c9;--fg:#292b2f;--mute:#646d74;--accent:#99712e;--accent-ink:#fff;--accent-soft:#f4ebd4;--good:#277a53;--bad:#b94131;--tile:#e5e1da;color-scheme:light}
+*{scrollbar-color:var(--line) transparent}
+::selection{background:rgba(223,184,103,.36);color:var(--fg)}
+button,select,input,textarea{transition:border-color .17s,background-color .17s,box-shadow .17s,color .17s,transform .17s}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn{font-weight:700;letter-spacing:.007em;border-radius:8px;padding:9px 14px;min-height:38px}
+.btn.primary{background:linear-gradient(135deg,#f4d289,#d5a64c);color:#1f1a10;border-color:#e3bb72;box-shadow:0 4px 22px rgba(222,168,59,.12)}
+.btn.primary:hover{background:linear-gradient(135deg,#ffe1a0,#e6bc63);transform:translateY(-1px);box-shadow:0 5px 24px rgba(222,168,59,.24)}
+.btn[disabled],.btn.primary[disabled]{opacity:.42;box-shadow:none;transform:none;cursor:not-allowed}
+.panel{border:1px solid var(--line);border-radius:13px;box-shadow:0 7px 28px rgba(0,0,0,.07)}
+.tag{letter-spacing:.13em;color:var(--accent)}
+.hint,.am-note{line-height:1.6}
+#msg{position:relative;top:auto;z-index:2}
+#msg .notice{border-radius:10px;font-weight:600;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+#as15-hero{position:relative;max-width:1240px;margin:0 auto;padding:32px 32px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.as15-brand{display:flex;align-items:center;gap:20px;min-width:0}
+.as15-sigil{width:74px;height:74px;flex:none;display:grid;place-items:center;color:#f4d38d;background:linear-gradient(155deg,#292515,#14181d);border:1px solid #98733b;clip-path:polygon(50% 0,94% 25%,94% 75%,50% 100%,6% 75%,6% 25%);text-shadow:0 0 22px rgba(243,193,90,.32);font:38px Georgia,serif}
+.as15-eyebrow{font:600 11px/1.3 var(--mono);letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin:0 0 8px}
+.as15-hero-title{font:400 clamp(27px,3.1vw,42px)/1.08 var(--display);letter-spacing:.015em;color:var(--fg);margin:0}
+.as15-hero-title em{font-style:normal;color:var(--accent)}
+.as15-hero-sub{color:var(--mute);margin:9px 0 0;max-width:610px;font-size:14px;line-height:1.5}
+.as15-hero-meta{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.as15-kicker{display:inline-flex;align-items:center;gap:7px;padding:4px 9px;border:1px solid var(--line);border-radius:30px;background:var(--panel);font:600 11px var(--mono);letter-spacing:.03em;color:var(--mute)}
+.as15-kicker.preview{border-color:rgba(223,184,103,.48);color:var(--accent);background:var(--accent-soft)}
+.as15-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;flex:none;border:1px solid var(--line);border-radius:12px;background:rgba(25,31,37,.58);overflow:hidden}
+.as15-stat{padding:15px 20px;text-align:center;min-width:95px}
+.as15-stat+.as15-stat{border-left:1px solid var(--line)}
+.as15-stat b{display:block;font:26px/1.1 var(--display);color:var(--accent)}
+.as15-stat span{display:block;margin-top:6px;color:var(--mute);font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+#as15-nav-shell{position:sticky;top:0;z-index:100;background:rgba(11,14,19,.91);border-block:1px solid rgba(226,184,101,.17);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+#as15-nav{max-width:1180px;margin:auto;display:flex;align-items:center;gap:8px;padding:9px 12px;min-height:58px}
+.as15-nav-link{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 16px;min-width:100px;justify-content:center;border-radius:8px;border:1px solid transparent;text-decoration:none;color:#b1b8c2;font-weight:700;font-size:13px;white-space:nowrap}
+.as15-nav-link:hover{color:var(--fg);background:rgba(255,255,255,.06)}
+.as15-nav-link[aria-current=page]{border-color:rgba(223,184,103,.32);background:rgba(223,184,103,.11);color:#f4d38d}
+.as15-nav-glyph{color:#dfb867;font:18px/1 Georgia,serif}
+.as15-nav-right{margin-left:auto;display:flex;align-items:center;gap:13px;white-space:nowrap}
+.as15-current-class{font:12px var(--mono);color:#c5c5c5}
+.as15-current-class select{margin-left:6px;background:#1b232b;border:1px solid #394352;border-radius:6px;color:#e8d7b2;padding:7px 23px 7px 8px;font:12px var(--mono);max-width:115px;cursor:pointer}
+#as15-theme{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(223,184,103,.28);border-radius:8px;background:rgba(255,255,255,.035);color:var(--accent);cursor:pointer;font-size:18px}
+#as15-theme:hover{background:rgba(223,184,103,.11)}
+.wrap{max-width:1180px;margin:22px auto 0;gap:14px}
+.wrap>.head{display:none}
+.wrap>.load{padding:15px 18px;gap:18px;align-items:center;border-color:rgba(223,184,103,.3);background:linear-gradient(110deg,rgba(223,184,103,.06),transparent 65%),var(--panel)}
+.wrap .drop{border-radius:9px;border-color:rgba(223,184,103,.3);background:rgba(255,255,255,.018)}
+.wrap .drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.wrap .drop .file-name{font-size:12px}
+.editor-credits{font-size:12px!important;border-style:dashed!important;background:transparent!important;color:var(--mute)!important}
+.editor-credits strong{color:var(--accent)!important}
+#char{padding:15px 18px}
+#app .rail{top:74px;box-shadow:none}
+#app .cls{border-radius:8px;min-height:42px}
+#app .cls[aria-pressed=true]{border-color:rgba(223,184,103,.6);background:var(--accent-soft)}
+#app .cls i{border-radius:3px;box-shadow:0 0 12px color-mix(in srgb,var(--c),transparent 70%)}
+#app .bar{padding:14px 17px;gap:14px;background:linear-gradient(120deg,rgba(223,184,103,.04),transparent),var(--panel)}
+#app .tree{border-color:var(--line);background:var(--panel)}
+#app .tree header{padding-bottom:7px;border-bottom:1px solid var(--line)}
+#app .t{box-shadow:0 2px 7px rgba(0,0,0,.15)}
+#app .t.full{box-shadow:0 0 0 1px rgba(223,184,103,.22),0 0 13px rgba(223,184,103,.11)}
+#armory-merge,#zone-manager,#as15-perks,#final-export-panel{max-width:1180px!important;width:calc(100% - 32px)!important;padding:24px!important;margin:19px auto!important}
+#armory-merge>div:first-child,#zone-manager>.tag,#as15-perks>.as15-section-top{position:relative}
+#armory-merge h2,#zone-manager h2,#as15-perks h2,#final-export-panel h2{font:400 clamp(23px,2.7vw,30px) var(--display);color:var(--fg);margin:6px 0 5px}
+#zone-manager .am-row>label:first-child,#armory-merge>.am-row>label:first-child{display:none}
+#armory-merge>.am-row{margin-block:8px}
+#armory-merge .am-note,#zone-manager .am-note{color:var(--mute)}
+#armory-merge #am-count{font:500 13px var(--mono);color:var(--fg);background:var(--panel2);border:1px solid var(--line);padding:8px 12px;border-radius:7px}
+#am-class-all,#am-all,#am-reset{font-size:13px}
+#am-all{background:var(--panel2);border-color:rgba(223,184,103,.58);color:var(--accent);box-shadow:none}
+#am-all:hover{background:var(--accent-soft);color:var(--accent)}
+#as15-armory-toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:9px 0 0}
+.as15-eq-progress{flex:1 1 150px;min-width:130px}
+.as15-eq-progress-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font:600 12px var(--mono);color:var(--mute);margin-bottom:7px}
+.as15-eq-progress-head b{color:var(--accent)}
+.as15-progress-track{height:7px;width:100%;border-radius:100px;background:rgba(0,0,0,.35);overflow:hidden}
+.as15-progress-fill{display:block;background:linear-gradient(90deg,#9d7339,#f0cc7b);border-radius:inherit;height:100%;width:0%;transition:width .3s ease}
+.as15-eq-controls{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.as15-segments{display:flex;gap:3px;padding:3px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.as15-filter{padding:8px 12px;min-height:34px;border:0;border-radius:6px;color:var(--mute);background:transparent;font:700 12px var(--body);cursor:pointer}
+.as15-filter[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}
+.as15-filter:not([aria-pressed=true]):hover{background:var(--panel2);color:var(--fg)}
+#as15-equipment-search{width:185px;max-width:100%;padding:9px 11px 9px 33px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:13px}
+.as15-search-wrap{position:relative;display:flex;align-items:center}
+.as15-search-wrap:before{content:'⌕';position:absolute;left:10px;top:0;font-size:22px;line-height:36px;color:var(--mute);pointer-events:none}
+#as15-filter-label{font:11px var(--mono);color:var(--mute);margin-top:6px;min-height:16px}
+#as15-focused-grid{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+#as15-focused-grid[data-active=true]{display:grid}
+#as15-focused-grid .as15-item-card{min-width:0;text-align:left;display:flex;flex-direction:column;gap:5px;border:1px solid var(--line);background:var(--panel2);border-radius:9px;padding:12px;cursor:pointer;color:var(--fg);transition:border-color .15s,transform .15s}
+#as15-focused-grid .as15-item-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+#as15-focused-grid .as15-item-card .as15-item-top{display:flex;justify-content:space-between;gap:6px;align-items:center;font:10px var(--mono);color:var(--mute)}
+#as15-focused-grid .as15-item-card .as15-item-name{font-size:14px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+#as15-focused-grid .as15-item-card .as15-item-status{font:11px var(--mono);color:var(--mute);margin-top:4px}
+#as15-focused-grid .as15-item-card.collected{border-color:rgba(115,217,165,.34)}
+#as15-focused-grid .as15-item-card.collected .as15-item-status{color:var(--good)}
+#as15-focused-grid .as15-item-empty{grid-column:1/-1;border:1px dashed var(--line);padding:28px 15px;border-radius:10px;text-align:center;color:var(--mute)}
+#armory-merge .am-matrix{border-radius:10px;border:1px solid var(--line);background:var(--panel2)}
+#armory-merge .am-matrix table{border-collapse:separate;border-spacing:2px}
+#armory-merge .am-gear{transition:border-color .18s,background .18s,box-shadow .18s}
+#armory-merge .am-gear.on{box-shadow:inset 0 0 0 1px rgba(115,217,165,.17)}
+#zone-manager{background:linear-gradient(150deg,rgba(223,184,103,.025),transparent 40%),var(--panel)}
+#as15-zone-overview{display:flex;align-items:center;gap:15px;margin:16px 0 8px;padding:13px 15px;border:1px solid var(--line);border-radius:9px;background:var(--panel2)}
+#as15-zone-overview .as15-zone-track{flex:1}
+#as15-zone-overview strong{color:var(--accent);font:22px var(--display)}
+#as15-zone-overview small{color:var(--mute);font:12px var(--mono)}
+#zone-manager .zm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0!important;counter-reset:as15zones}
+#zone-manager .zm-card{counter-increment:as15zones;position:relative;background:var(--panel2);border:1px solid var(--line);min-height:118px;display:flex;flex-direction:column;padding:16px 15px 13px 54px!important;border-radius:10px;transition:background .2s,border-color .2s,transform .2s}
+#zone-manager .zm-card:before{content:counter(as15zones,decimal-leading-zero);position:absolute;top:13px;left:14px;font:14px var(--mono);color:var(--accent);opacity:.65}
+#zone-manager .zm-card h3{font-size:17px!important;line-height:1.25!important;margin:0 0 11px!important}
+#zone-manager .zm-card .zm-controls{margin-top:auto}
+#zone-manager .zm-card label{display:inline-flex;border:1px solid var(--line);background:var(--panel);padding:5px 9px;border-radius:6px;font-size:12px;line-height:1.3;gap:8px}
+#zone-manager .zm-card input[type=checkbox]{accent-color:var(--good);width:15px;height:15px}
+#zone-manager .zm-card small{font:10px var(--mono);color:var(--mute);margin-top:8px}
+#zone-manager .zm-card:has(input:checked){border-color:rgba(115,217,165,.48);background:linear-gradient(130deg,rgba(115,217,165,.045),transparent),var(--panel2)}
+#zone-manager .zm-card:has(input:checked):before{color:var(--good);opacity:1}
+#zone-manager .zm-card:has(input:checked) label{border-color:rgba(115,217,165,.27);color:var(--good)}
+#zone-manager .zm-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 13px}
+#zone-manager .zm-actions #zm-status{width:100%;color:var(--mute);font-size:12px}
+#as15-perks{display:grid;gap:14px}
+#as15-perks .as15-perks-description{font-size:14px;color:var(--mute);max-width:750px}
+#as15-perks #am-perk-reset-tools{display:flex!important;margin:0!important;padding:16px!important;gap:12px!important;border:1px solid var(--line)!important;border-radius:10px;background:var(--panel2)}
+#as15-perks #am-perk-reset-tools>div:first-child{flex:1 1 300px!important}
+#as15-perks #am-perk-reset-tools>div:first-child>strong{display:none}
+#as15-perks #am-reset-remaining{display:block;margin-top:8px;color:var(--accent)}
+#as15-perks #am-perk-reset-tools p{margin:0!important}
+#final-export-panel{border-color:rgba(223,184,103,.48);background:linear-gradient(120deg,rgba(223,184,103,.08),transparent 65%),var(--panel)}
+#final-export-actions .am-row{margin-top:12px;align-items:center}
+#final-export-panel .as15-footer-explain{border-top:1px solid var(--line);padding-top:12px;margin-top:15px;display:flex;gap:16px;flex-wrap:wrap;color:var(--mute);font:12px var(--mono)}
+#final-export-panel #am-status{color:var(--accent)!important;font:12px var(--mono)!important}
+#as15-dock{position:fixed;bottom:0;left:0;right:0;z-index:150;background:rgba(10,14,20,.96);border-top:1px solid rgba(223,184,103,.33);box-shadow:0 -14px 40px rgba(0,0,0,.22);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);padding:12px max(16px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.as15-dock-inner{max-width:1180px;margin:auto;display:flex;align-items:center;gap:16px}
+.as15-dock-status{display:flex;align-items:center;min-width:0;gap:12px;flex:1}
+.as15-dock-dot{width:10px;height:10px;border-radius:50%;flex:none;background:#aa8a53;box-shadow:0 0 0 4px rgba(170,138,83,.1)}
+.as15-dock-dot[data-tone=ready]{background:var(--good);box-shadow:0 0 0 4px rgba(115,217,165,.1)}
+.as15-dock-dot[data-tone=dirty]{background:#f4bc67;box-shadow:0 0 0 4px rgba(244,188,103,.1)}
+.as15-dock-dot[data-tone=done]{background:var(--good)}
+.as15-dock-head{display:block;font:700 13px var(--body);color:#f2e8d8}
+.as15-dock-sub{display:block;max-width:440px;font:11px/1.5 var(--mono);color:#9eabb9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.as15-dock-dirty-count{display:inline-flex;align-items:center;white-space:nowrap;border:1px solid rgba(223,184,103,.28);color:#dfb867;background:rgba(223,184,103,.09);padding:6px 10px;border-radius:7px;font:11px var(--mono)}
+.as15-dock-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+#as15-dock #am-export{font-size:14px;line-height:1.15;letter-spacing:.01em;min-height:48px;padding:12px 23px;border-radius:9px;white-space:nowrap}
+#as15-dock #am-backup{font-size:12px;line-height:1.2;min-height:44px;white-space:nowrap;border-color:#3a4754;color:#d1d4da;background:rgba(255,255,255,.04)}
+#as15-dock #am-backup:hover{color:var(--accent);border-color:var(--accent)}
+#as15-toast{position:fixed;z-index:200;right:22px;bottom:118px;max-width:min(450px,calc(100vw - 36px));padding:14px 18px;background:#1b2b28;border:1px solid rgba(115,217,165,.45);border-radius:12px;color:#daf3df;box-shadow:0 12px 40px rgba(0,0,0,.35);font:13px/1.5 var(--body);opacity:0;transform:translateY(13px);pointer-events:none;transition:opacity .22s,transform .22s}
+#as15-toast.visible{opacity:1;transform:translateY(0)}
+#as15-toast[data-kind=error]{background:#322323;border-color:rgba(255,147,126,.55);color:#ffd6cd}
+#as15-modal{padding:0;max-width:min(470px,calc(100vw - 30px));background:var(--panel);color:var(--fg);border:1px solid rgba(223,184,103,.46);border-radius:15px;box-shadow:0 25px 90px rgba(0,0,0,.5)}
+#as15-modal::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(5px)}
+.as15-modal-content{padding:26px}
+.as15-modal-content h2{color:var(--accent);font:26px var(--display);margin:0 0 9px}
+.as15-modal-content p{color:var(--mute);margin:0 0 24px;line-height:1.6}
+.as15-modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.as15-anchor{height:1px;scroll-margin-top:96px}
+body:not([data-as15-ready]) #as15-dock{visibility:hidden}
+@media (max-width:1100px){#as15-hero{padding:27px 20px} .as15-hero-stats .as15-stat{padding:13px 14px;min-width:80px}#as15-focused-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:850px){#as15-hero{align-items:flex-start}.as15-hero-stats{display:none}#as15-nav{overflow-x:auto} .as15-nav-link{min-width:0} .as15-nav-right{position:sticky;right:0;background:inherit}#as15-focused-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#zone-manager .zm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#as15-dock #am-export{padding:12px 16px}.as15-dock-dirty-count{display:none}}
+@media(max-width:620px){
+  body{padding-bottom:132px!important}
+  #as15-hero{padding:24px 16px 22px}
+  .as15-brand{gap:12px}.as15-sigil{width:51px;height:57px;font-size:28px}
+  .as15-hero-title{font-size:28px}.as15-hero-sub{font-size:12px}
+  #as15-nav{gap:2px;padding:8px 9px;min-height:53px}
+  .as15-nav-link{gap:5px;padding:7px 9px;font-size:11px}
+  .as15-nav-glyph{font-size:15px}
+  .as15-nav-right{gap:4px}
+  .as15-current-class{display:none}
+  #armory-merge>.am-row>label:first-child,#zone-manager .am-row>label:first-child{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:12px;margin-bottom:4px}
+  #armory-merge>.am-row>label:first-child select,#zone-manager .am-row>label:first-child select{font-size:12px;max-width:200px}
+  #as15-theme{height:31px;width:31px}
+  .wrap{width:calc(100% - 20px);margin-top:12px}
+  #armory-merge,#zone-manager,#as15-perks,#final-export-panel{width:calc(100% - 20px)!important;padding:17px!important;margin:12px auto!important}
+  #as15-armory-toolbar{padding:12px} .as15-eq-controls{width:100%} .as15-search-wrap{flex:1}#as15-equipment-search{width:100%}
+  #zone-manager .zm-grid{grid-template-columns:1fr;gap:9px}
+  #zone-manager .zm-card{min-height:90px;padding:12px 12px 12px 54px!important}
+  #zone-manager .zm-card:before{top:12px}
+  .as15-dock-inner{gap:8px}
+  .as15-dock-status{gap:8px}
+  .as15-dock-head{font-size:11px}
+  .as15-dock-sub{font-size:10px;max-width:125px}
+  #as15-dock #am-export{min-height:45px;padding:10px 12px;font-size:12px}
+  #as15-dock #am-backup{display:none}
+  #as15-toast{bottom:98px;right:12px}
+}
+@media(max-width:410px){.as15-nav-link{padding:7px 7px;font-size:10px}.as15-hero-title{font-size:25px}.as15-sigil{display:none}.as15-dock-sub{max-width:100px}#as15-focused-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+
+
+<script id="as15-ui">
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const bridge=window.__AS_EDITOR_BRIDGE;
+if(!bridge){console.error('v1.5 UI: save bridge unavailable');return;}
+
+// Premium masthead and in-page navigation; core editor DOM is not cloned or rewritten.
+const hero=document.createElement('header');hero.id='as15-hero';
+hero.innerHTML=`<div class="as15-brand"><div class="as15-sigil" aria-hidden="true">✦</div><div><div class="as15-eyebrow">AZEROTH SURVIVORS <span aria-hidden="true">/</span> COMMUNITY TOOLS</div><h1 class="as15-hero-title">The <em>Save Editor</em></h1><p class="as15-hero-sub">Shape your build. Complete your collection. Chart your journey through Azeroth. Everything stays in your browser.</p><div class="as15-hero-meta"><span class="as15-kicker preview">✦ v1.5 RELEASE</span><span class="as15-kicker">◆ Local save editing</span><span class="as15-kicker">○ No account required</span></div></div></div><div class="as15-hero-stats" aria-label="Editor coverage"><div class="as15-stat"><b>09</b><span>Classes</span></div><div class="as15-stat"><b>498</b><span>Gear pieces</span></div><div class="as15-stat"><b>12</b><span>Zones</span></div></div>`;
+document.body.insertBefore(hero,document.body.firstChild);
+const navShell=document.createElement('div');navShell.id='as15-nav-shell';
+navShell.innerHTML=`<nav id="as15-nav" aria-label="Editor sections"><a class="as15-nav-link" href="#section-talents" data-part="talents" aria-current="page"><span class="as15-nav-glyph">✣</span>Talents</a><a class="as15-nav-link" href="#armory-merge" data-part="armory"><span class="as15-nav-glyph">◈</span>Armory</a><a class="as15-nav-link" href="#zone-manager" data-part="zones"><span class="as15-nav-glyph">⌖</span>Zones</a><a class="as15-nav-link" href="#as15-perks" data-part="perks"><span class="as15-nav-glyph">✧</span>Perks</a><div class="as15-nav-right"><label class="as15-current-class" for="as15-class-select">CLASS <select id="as15-class-select" aria-label="Editing class"></select></label><button type="button" id="as15-theme" title="Switch color theme" aria-label="Switch light or dark theme">☼</button></div></nav>`;
+document.body.insertBefore(navShell,document.querySelector('.wrap'));
+const classSelect=$('as15-class-select');
+for(const [value,label] of [['1','Warrior'],['2','Paladin'],['3','Hunter'],['4','Rogue'],['5','Priest'],['7','Shaman'],['8','Mage'],['9','Warlock'],['11','Druid']])classSelect.add(new Option(label,value));
+classSelect.addEventListener('change',()=>{
+  const original=document.querySelector('#app .cls[data-cls="'+classSelect.value+'"]');
+  if(original)original.click();
+});
+const anchor=document.createElement('div');anchor.id='section-talents';anchor.className='as15-anchor';anchor.setAttribute('aria-hidden','true');
+$('char').parentNode.insertBefore(anchor,$('char'));
+
+// Sections: move the *existing* perk controls, retaining original listeners.
+const perks=document.createElement('section');perks.id='as15-perks';perks.className='panel';
+perks.innerHTML=`<div class="as15-section-top"><div class="tag">CHAPTER IV / PERMANENT PERKS</div><h2>Perk Resets</h2><p class="as15-perks-description">Restore your reset allowance while keeping your purchased perks and tabards intact. This feature is experimental; keep an untouched backup.</p></div>`;
+document.body.insertBefore(perks,$('final-export-panel'));
+const perkControls=$('am-perk-reset-tools');if(perkControls)perks.appendChild(perkControls);
+
+// Filter toolbar: original table remains authoritative. Focused cards trigger
+// existing gear buttons, so they use the exact same editing logic and IDs.
+const toolbar=document.createElement('div');toolbar.id='as15-armory-toolbar';
+toolbar.innerHTML=`<div class="as15-eq-progress"><div class="as15-eq-progress-head"><span>CLASS COLLECTION</span><b id="as15-eq-pct">0%</b></div><div class="as15-progress-track" role="progressbar" aria-label="Class equipment collected" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="as15-eq-track"><span class="as15-progress-fill" id="as15-eq-fill"></span></div></div><div class="as15-eq-controls"><div class="as15-segments" role="group" aria-label="Equipment filter"><button class="as15-filter" data-filter="all" aria-pressed="true" type="button">All</button><button class="as15-filter" data-filter="missing" aria-pressed="false" type="button">Missing</button><button class="as15-filter" data-filter="collected" aria-pressed="false" type="button">Collected</button></div><label class="as15-search-wrap"><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Search equipment</span><input id="as15-equipment-search" type="search" placeholder="Search gear / rarity..." autocomplete="off" aria-label="Search equipment"></label></div>`;
+const matrix=$('am-matrix');matrix.parentNode.insertBefore(toolbar,matrix);
+const grid=document.createElement('div');grid.id='as15-focused-grid';grid.setAttribute('aria-label','Filtered equipment');matrix.after(grid);
+const filterLabel=document.createElement('div');filterLabel.id='as15-filter-label';grid.before(filterLabel);
+let filterMode='all',filterQuery='';
+function renderEquipmentFilter(){
+  const cards=[...matrix.querySelectorAll('.am-gear[data-id]')];
+  if(!cards.length)return;
+  const focused=filterMode!=='all'||!!filterQuery;
+  matrix.style.display=focused?'none':'';
+  grid.dataset.active=String(focused);
+  const visible=cards.filter(b=>{
+    const isCollected=b.classList.contains('on');
+    if(filterMode==='missing'&&isCollected)return false;
+    if(filterMode==='collected'&&!isCollected)return false;
+    const row=b.closest('tr'),slotIndex=[...b.closest('td').parentNode.children].indexOf(b.closest('td'));
+    const header=matrix.querySelectorAll('thead th')[slotIndex]?.textContent||'';
+    const rarity=row?.querySelector('.am-rarity')?.textContent||'';
+    const searchable=[b.textContent,header,rarity].join(' ').toLowerCase();
+    return !filterQuery||searchable.includes(filterQuery);
+  });
+  filterLabel.textContent=focused?`${visible.length} matching equipment piece${visible.length===1?'':'s'} · ${$('am-class').selectedOptions[0]?.textContent.split(' (')[0]||''}`:'';
+  if(!focused){grid.replaceChildren();return;}
+  const frag=document.createDocumentFragment();
+  for(const b of visible){
+    const td=b.closest('td'),row=b.closest('tr'),slotIndex=[...row.children].indexOf(td);
+    const slot=matrix.querySelectorAll('thead th')[slotIndex]?.textContent?.trim()||'Gear';
+    const rarity=row.querySelector('.am-rarity')?.firstChild?.textContent?.trim()||'Equipment';
+    const collected=b.classList.contains('on');
+    const card=document.createElement('button');card.type='button';card.className='as15-item-card'+(collected?' collected':'');
+    card.dataset.gearId=b.dataset.id;
+    card.disabled=b.disabled;
+    const top=document.createElement('span');top.className='as15-item-top';top.textContent=rarity.toUpperCase()+'  ·  '+slot.toUpperCase();
+    const title=document.createElement('span');title.className='as15-item-name';title.textContent=b.querySelector('strong')?.textContent||b.textContent;
+    const status=document.createElement('span');status.className='as15-item-status';status.textContent=collected?'✓ Collected · Click to remove':'+ Missing · Click to collect';
+    card.append(top,title,status);
+    card.addEventListener('click',()=>{const current=[...matrix.querySelectorAll('.am-gear[data-id]')].find(x=>x.dataset.id===card.dataset.gearId);current?.click()});
+    frag.append(card);
+  }
+  if(!visible.length){const empty=document.createElement('div');empty.className='as15-item-empty';empty.textContent='No matching gear found. Try a different filter or search.';frag.append(empty);}
+  grid.replaceChildren(frag);
+}
+let filterScheduled=false;
+function scheduleGearFilter(){if(filterScheduled)return;filterScheduled=true;requestAnimationFrame(()=>{filterScheduled=false;renderEquipmentFilter()})}
+new MutationObserver(scheduleGearFilter).observe(matrix,{childList:true});
+toolbar.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{
+  filterMode=b.dataset.filter;
+  toolbar.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  scheduleGearFilter();
+}));
+$('as15-equipment-search').addEventListener('input',e=>{filterQuery=e.target.value.toLowerCase().trim();scheduleGearFilter()});
+
+// The source export button is MOVED, not duplicated; its verified exporter
+// remains the only code path that creates a new .sav file.
+const dock=document.createElement('footer');dock.id='as15-dock';dock.setAttribute('aria-label','Save export actions');
+dock.innerHTML=`<div class="as15-dock-inner"><div class="as15-dock-status"><span class="as15-dock-dot" id="as15-status-dot" data-tone="ready" aria-hidden="true"></span><span style="min-width:0"><span class="as15-dock-head" id="as15-dock-title">Example save loaded</span><span class="as15-dock-sub" id="as15-dock-sub">Import your own .sav file to begin</span></span></div><span class="as15-dock-dirty-count" id="as15-dirty-chip">NO CHANGES</span><div class="as15-dock-actions" id="as15-dock-actions"></div></div>`;
+document.body.append(dock);
+const dockActions=$('as15-dock-actions'),exportBtn=$('am-export'),backupBtn=$('am-backup');
+exportBtn.textContent='↓ Export Save';exportBtn.title='Download a .sav containing all your changes (Ctrl/⌘ + S)';
+backupBtn.textContent='↓ Original Backup';backupBtn.title='Download untouched original save';
+dockActions.append(backupBtn,exportBtn);
+const originalExportArea=$('final-export-actions');
+if(originalExportArea){originalExportArea.insertAdjacentHTML('beforeend','<div class="as15-footer-explain"><span>✓ Talents + XP verified</span><span>✓ Equipment collection verified</span><span>✓ One encrypted .sav download</span><span>⌄ Use the gold button below to export</span></div>')}
+// On narrow screens backup remains available at the main export panel too.
+const backupMini=document.createElement('button');backupMini.type='button';backupMini.className='btn';backupMini.id='as15-backup-mobile';backupMini.textContent='↓ Download untouched original save';backupMini.style.cssText='margin-top:12px;font-size:12px';
+backupMini.addEventListener('click',()=>backupBtn.click());originalExportArea?.append(backupMini);
+
+const zoneOverview=document.createElement('div');zoneOverview.id='as15-zone-overview';
+zoneOverview.innerHTML=`<div><strong id="as15-zone-n">0 / 12</strong><br><small>ZONES CLEARED</small></div><div class="as15-zone-track"><div class="as15-progress-track" role="progressbar" aria-label="Zones cleared" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" id="as15-zone-track"><span id="as15-zone-fill" class="as15-progress-fill"></span></div></div>`;
+$('zm-grid').before(zoneOverview);
+
+// High-risk bulk action: lightweight confirmation; never silently change 498 IDs.
+const confirmDialog=document.createElement('dialog');confirmDialog.id='as15-modal';
+confirmDialog.innerHTML=`<div class="as15-modal-content"><div class="tag" style="margin-bottom:10px">BULK EQUIPMENT ACTION</div><h2>Unlock all 498 pieces?</h2><p>This will add every known equipment ID across all 9 classes to your draft. It won't touch your original save until you export and import the new file.</p><div class="as15-modal-actions"><button class="btn" type="button" id="as15-cancel-unlock">Cancel</button><button class="btn primary" type="button" id="as15-confirm-unlock">Unlock all 498</button></div></div>`;
+document.body.append(confirmDialog);
+const bulk=$('am-all'),oldBulk=bulk.onclick;
+bulk.onclick=(ev)=>{
+  if(!bridge.snapshot())return oldBulk.call(bulk,ev);
+  if(typeof confirmDialog.showModal==='function')confirmDialog.showModal();
+  else if(window.confirm('Unlock all 498 equipment pieces?'))oldBulk.call(bulk,ev);
+};
+$('as15-cancel-unlock').addEventListener('click',()=>confirmDialog.close());
+$('as15-confirm-unlock').addEventListener('click',()=>{confirmDialog.close();oldBulk.call(bulk,new Event('click'))});
+confirmDialog.addEventListener('click',ev=>{if(ev.target===confirmDialog)confirmDialog.close()});
+
+// Theme preference (UI only; does not touch the save).
+const root=document.documentElement;
+try{const saved=localStorage.getItem('as15-theme');if(saved==='dark'||saved==='light')root.dataset.theme=saved}catch(_e){}
+function updateThemeButton(){$('as15-theme').textContent=root.dataset.theme==='dark'?'☼':'☾';$('as15-theme').title=root.dataset.theme==='dark'?'Use light theme':'Use dark theme'}
+updateThemeButton();
+$('as15-theme').addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('as15-theme',root.dataset.theme)}catch(_e){}updateThemeButton()});
+
+// Dirty summary tracks actual live serializer and extension drafts. Exported
+// state is compared to last successful download, not only original import.
+let lastImport=null,lastSuccessfulExport=null,lastRendered=null,latest=null;
+function formatSummary(s){
+  const bits=[];
+  if(s.editedTalentClasses.length)bits.push(`Talents: ${s.editedTalentClasses.length} class${s.editedTalentClasses.length===1?'':'es'}`);
+  if(s.added||s.removed)bits.push(`Gear: +${s.added} / −${s.removed}`);
+  if(s.changedZones.length)bits.push(`Zones: ${s.changedZones.length} class${s.changedZones.length===1?'':'es'}`);
+  if(s.perksChanged)bits.push('Perk resets');
+  if(s.characterChanged)bits.push('Character');
+  return bits.join('  ·  ');
+}
+let toastTimeout;
+const toast=document.createElement('div');toast.id='as15-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');document.body.append(toast);
+function showToast(message,kind='success'){
+  toast.textContent=message;toast.dataset.kind=kind;toast.classList.add('visible');
+  clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>toast.classList.remove('visible'),5200);
+}
+function syncStatus(){
+  let s;try{s=bridge.snapshot()}catch(err){console.warn('Preview status:',err);return}
+  if(!s)return;
+  if(s.importKey!==lastImport){lastImport=s.importKey;lastSuccessfulExport=null;lastRendered=null;}
+  latest=s;
+  const visibleClass=s.classId+'|'+$('zm-summary')?.textContent;
+  const nextRendered=s.fingerprint+'|'+visibleClass;
+  if(nextRendered===lastRendered)return;
+  lastRendered=nextRendered;
+  if($('as15-class-select').value!==s.classId)$('as15-class-select').value=s.classId;
+  const pct=s.classTotal?Math.round(s.classCollected/s.classTotal*100):0;
+  $('as15-eq-fill').style.width=pct+'%';$('as15-eq-pct').textContent=pct+'%';$('as15-eq-track').setAttribute('aria-valuenow',pct);
+  const zoneChecks=[...$('zm-grid').querySelectorAll('input[data-zone]:checked')].length;
+  $('as15-zone-n').textContent=zoneChecks+' / 12';$('as15-zone-fill').style.width=(zoneChecks/12*100)+'%';$('as15-zone-track').setAttribute('aria-valuenow',zoneChecks);
+  const edited=s.areas.length>0,alreadyExported=s.fingerprint===lastSuccessfulExport;
+  const dot=$('as15-status-dot'),title=$('as15-dock-title'),sub=$('as15-dock-sub'),chip=$('as15-dirty-chip');
+  if(s.demo){title.textContent='Demo mode · example save';sub.textContent='Import a current .sav before editing your real progress';dot.dataset.tone='ready'}
+  else if(alreadyExported){title.textContent='✓ Exported · up to date';sub.textContent='Download ready · import the file back into the game';dot.dataset.tone='done'}
+  else if(edited){title.textContent='Ready to export · '+s.areas.length+' area'+(s.areas.length===1?'':'s')+' edited';sub.textContent=formatSummary(s);dot.dataset.tone='dirty'}
+  else{title.textContent='Save loaded · '+s.className;sub.textContent='No modifications yet · your original remains untouched';dot.dataset.tone='ready'}
+  chip.textContent=alreadyExported?'EXPORTED':edited?`${s.areas.length} SECTION${s.areas.length===1?'':'S'} EDITED`:'NO CHANGES';
+  document.body.dataset.as15Ready='1';
+}
+// The original script can redraw class and equipment sections independently.
+// Polling this small *read-only* snapshot avoids patching the obfuscated base.
+setInterval(syncStatus,600);
+document.addEventListener('input',()=>setTimeout(syncStatus,40),true);
+document.addEventListener('change',()=>setTimeout(()=>{lastRendered=null;syncStatus()},70),true);
+document.addEventListener('click',()=>setTimeout(()=>{lastRendered=null;syncStatus()},90),true);
+document.addEventListener('as15:export',ev=>{
+  try{
+    const s=bridge.snapshot();
+    if(ev.detail?.success){lastSuccessfulExport=s?.fingerprint||null;showToast('✓ Save exported and verified. Import the downloaded .sav back into the game.');}
+    else showToast('Export failed: '+(ev.detail?.message||'Unknown error'),'error');
+    lastRendered=null;syncStatus();
+  }catch(err){console.error(err)}
+});
+window.addEventListener('beforeunload',ev=>{
+  if(latest&&!latest.demo&&latest.areas.length>0&&latest.fingerprint!==lastSuccessfulExport){ev.preventDefault();ev.returnValue='';}
+});
+document.addEventListener('keydown',ev=>{
+  if((ev.ctrlKey||ev.metaKey)&&ev.key.toLowerCase()==='s'){
+    ev.preventDefault();exportBtn.click();
+  }
+});
+
+// Update selected section as users scroll, without altering any editor UI.
+const tracked=[['section-talents','talents'],['armory-merge','armory'],['zone-manager','zones'],['as15-perks','perks']];
+const items=tracked.map(([id,part])=>({el:$(id),part}));
+if('IntersectionObserver' in window){
+  const ob=new IntersectionObserver(entries=>{
+    const seen=entries.filter(x=>x.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+    if(!seen.length)return;
+    const part=items.find(x=>x.el===seen[0].target)?.part;
+    navShell.querySelectorAll('[data-part]').forEach(a=>a.setAttribute('aria-current',a.dataset.part===part?'page':'false'));
+  },{rootMargin:'-85px 0px -55% 0px',threshold:0});
+  items.forEach(x=>x.el&&ob.observe(x.el));
+}
+navShell.querySelectorAll('[data-part]').forEach(a=>a.addEventListener('click',()=>{
+  navShell.querySelectorAll('[data-part]').forEach(x=>x.setAttribute('aria-current',String(x===a?'page':'false')));
+}));
+setTimeout(()=>{scheduleGearFilter();syncStatus();},200);
+})();
+</script>
+
 </body>
 </html>
