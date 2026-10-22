@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Azeroth Survivors Save Editor v1.5 | Shilen</title>
-<meta name="description" content="Azeroth Survivors Save Editor v1.5: edit talent trees, collect 498 equipment pieces, manage zone progress and perk resets. Runs locally in your browser.">
+<title>Azeroth Survivors Save Editor v1.5.1 | Shilen</title>
+<meta name="description" content="Azeroth Survivors Save Editor v1.5.1: edit talent trees, collect 498 equipment pieces, manage zone progress and perk resets. Runs locally in your browser.">
 <meta name="theme-color" content="#0d1118">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Alegreya+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -57,6 +57,7 @@
 <div class="zm-grid" id="zm-grid"></div>
 <div class="zm-actions"><button class="btn" id="zm-restore">Restore imported zone records</button><label class="zm-target-label">Progress to <select id="zm-target"></select></label><button class="btn" id="zm-through">Clear prerequisites</button><button class="btn" id="zm-complete-all">Mark all 12 cleared</button><span id="zm-status">Import a save to edit progression.</span></div>
 <p class="am-note">Clearing the preceding zones is the in-game-tested way to advance. “Clear prerequisites” marks every zone before your selected destination as cleared, without marking the destination itself. Bulk progression is still experimental; always back up your save.</p></section>
+<section class="panel" id="as151-compat-banner" style="max-width:1180px;margin:18px auto;padding:12px 18px;color:var(--mute);font-size:14px"><strong style="color:var(--accent)">v1.5.1 compatibility:</strong> Updated support for dual talent builds and legacy zone-unlock records. Export a backup before editing. Game-side persistence after the latest patch is not yet confirmed.</section>
 <section class="panel" id="final-export-panel" aria-label="Save all changes"><div class="tag">Final step · Verified save export</div><h2>Save Your Changes</h2><p class="hint">Exports talents (including XP and ranks), equipment and zone progression together. Your original imported save stays unchanged.</p><div id="final-export-actions"></div></section>
 <script>
 (()=>{'use strict';
@@ -67,8 +68,51 @@ function zoneRecord(lines,kind,cls){const line=lines.find(l=>l.startsWith(kind+'
 function zoneSync(){if(!loaded())return false;if(zoneImport!==Y.plain){zoneImport=Y.plain;zoneDraft={};}return true}
 function zoneState(cls){if(!zoneSync())return null;if(!zoneDraft[cls])zoneDraft[cls]={beat:zoneRecord(Y.plain.split(/\r?\n/),'beat',cls),open:zoneRecord(Y.plain.split(/\r?\n/),'open',cls)};return zoneDraft[cls]}
 function renderZones(){const grid=$('zm-grid');if(!grid)return;const cls=$('zm-class').value,st=zoneState(cls),active=!!st;grid.innerHTML=zoneCatalog.map(([name,key])=>{const beat=active&&st.beat.has(key);return '<article class="zm-card"><h3>'+name+'</h3><div class="zm-controls"><label><input type="checkbox" data-zone="'+key+'" '+(beat?'checked ':'')+(!active?'disabled ':'')+'> Cleared</label></div><small>Save ID: '+key+'</small></article>'}).join('');grid.querySelectorAll('input[data-zone]').forEach(el=>el.onchange=()=>{const st=zoneState(cls),key=el.dataset.zone;if(el.checked)st.beat.add(key);else st.beat.delete(key);renderZones();$('zm-status').textContent='Zone draft updated. Export all changes at the bottom.'});$('zm-summary').textContent=active?st.beat.size+' of 12 zones cleared':'Open a save to begin'}
-function applyZones(lines){if(!zoneDraft)return;for(const [cls,state] of Object.entries(zoneDraft)){for(const kind of ['beat']){const prefix=kind+'|'+cls+'|',at=lines.findIndex(l=>l.startsWith(prefix));const values=[...state[kind]].sort();if(at>=0){lines[at]=prefix+values.join(',')}else if(values.length){const end=lines.length&&lines.at(-1)===''?lines.length-1:lines.length;lines.splice(end,0,prefix+values.join(','))}}}}
-function verifyZones(lines){if(!zoneDraft)return;for(const [cls,state] of Object.entries(zoneDraft))for(const kind of ['beat']){const actual=zoneRecord(lines,kind,cls);if(actual.size!==state[kind].size||[...state[kind]].some(x=>!actual.has(x)))throw Error('Zone verification failed: '+kind+' class '+cls)}}
+function sameSet(a,b){return a.size===b.size&&[...a].every(k=>b.has(k))}
+function zoneSort(a,b){const ai=zoneCatalog.findIndex(([,id])=>id===a),bi=zoneCatalog.findIndex(([,id])=>id===b);return (ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b)}
+function legacyUnlockTarget(lines,cls,beats){
+  const prefix='unlock|'+cls+'|',matches=lines.filter(l=>l.startsWith(prefix));
+  if(!matches.length)return null;
+  if(matches.length!==1||!/^unlock\|\d+\|\d+$/.test(matches[0]))throw Error('Unrecognized legacy zone unlock record for class '+cls);
+  const original=Number(matches[0].split('|')[2]);
+  if(original<1||original>zoneCatalog.length)throw Error('Legacy unlock value outside known zone range for class '+cls);
+  const farthest=zoneCatalog.reduce((n,[,key],index)=>beats.has(key)?index:n,-1);
+  return Math.max(original,Math.min(zoneCatalog.length,farthest+2));
+}
+function applyZones(lines){
+  if(!zoneDraft)return;
+  const imported=Y.plain.split(/\r?\n/);
+  for(const [cls,state] of Object.entries(zoneDraft)){
+    const before=zoneRecord(imported,'beat',cls);
+    if(sameSet(before,state.beat))continue; // preserve untouched records byte-for-byte
+    const prefix='beat|'+cls+'|',matches=lines.map((l,i)=>l.startsWith(prefix)?i:-1).filter(i=>i>=0);
+    if(matches.length>1)throw Error('Multiple cleared-zone records for class '+cls);
+    const values=[...state.beat].sort(zoneSort);
+    if(matches.length){lines[matches[0]]=prefix+values.join(',')}
+    else if(values.length){const at=lines.length&&lines.at(-1)===''?lines.length-1:lines.length;lines.splice(at,0,prefix+values.join(','))}
+    // Older saves store the furthest unlocked zone as a 1-based numeric index.
+    // Newer saves have open|class|zone-name; do NOT overwrite the chosen zone.
+    const legacy=legacyUnlockTarget(imported,cls,state.beat);
+    if(legacy!==null){const idx=lines.findIndex(l=>l.startsWith('unlock|'+cls+'|'));lines[idx]='unlock|'+cls+'|'+legacy;}
+  }
+}
+function verifyZones(lines){
+  if(!zoneDraft)return;
+  const original=Y.plain.split(/\r?\n/);
+  for(const [cls,state] of Object.entries(zoneDraft)){
+    const prior=zoneRecord(original,'beat',cls),actual=zoneRecord(lines,'beat',cls);
+    if(!sameSet(actual,state.beat))throw Error('Zone verification failed for class '+cls);
+    const before=original.filter(l=>l.startsWith('beat|'+cls+'|')),
+          after=lines.filter(l=>l.startsWith('beat|'+cls+'|'));
+    if(before.length>1||after.length>1)throw Error('Multiple cleared-zone records for class '+cls);
+    if(sameSet(prior,state.beat)&&JSON.stringify(before)!==JSON.stringify(after))throw Error('Unchanged zone record was rewritten for class '+cls);
+    const was=original.filter(l=>l.startsWith('unlock|'+cls+'|')),
+          now=lines.filter(l=>l.startsWith('unlock|'+cls+'|'));
+    const legacy=sameSet(prior,state.beat)?null:legacyUnlockTarget(original,cls,state.beat);
+    if(legacy===null){if(JSON.stringify(was)!==JSON.stringify(now))throw Error('Unexpected legacy unlock change for class '+cls)}
+    else if(now.length!==1||now[0]!=='unlock|'+cls+'|'+legacy)throw Error('Legacy zone unlock verification failed for class '+cls);
+  }
+}
 
 const classes={1:'Warrior',2:'Paladin',3:'Hunter',4:'Rogue',5:'Priest',7:'Shaman',8:'Mage',9:'Warlock',11:'Druid'};
 const slots=['Head','Shoulder','Chest','Waist','Legs','Feet','Wrist','Hands','Main Hand','Off Hand'];
@@ -127,6 +171,62 @@ $('am-all').onclick=()=>{if(!loaded())return status('Open a save first');write(n
 $('am-reset').onclick=()=>{if(!loaded())return status('Open a save first');try{let set=parseItems(Y.plain.split(/\r?\n/)),current=items();for(let x of all())current.delete(x);for(let x of set)current.add(x);write(current);status('Equipment collection restored from imported save. Talents preserved.')}catch(e){status('Reset failed: '+e.message)}};
 function download(text,name){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([text],{type:'text/plain'}));a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function talentRecords(lines){return lines.filter(l=>/^talent\|\d+\|/.test(l)).map(l=>{let p=l.split('|');return {id:p[1],xp:p[2],ranks:p.slice(3).join('|')}})}
+// Dual-talent builds were introduced after the original editor was written.
+// The game now stores the active build in BOTH talent| and spec|; changing only
+// talent| can cause the game to load the old active-spec allocation instead.
+function rankSignature(ranks){return ranks.split(',').filter(Boolean).sort().join(',')}
+function talentMap(lines){
+  const map=new Map();
+  for(const line of lines){if(!line.startsWith('talent|'))continue;
+    const bits=line.split('|');if(bits.length<4||!/^\d+$/.test(bits[1])||map.has(bits[1]))throw Error('Invalid or duplicated talent record');
+    map.set(bits[1],{xp:bits[2],ranks:bits.slice(3).join('|')});
+  }
+  return map;
+}
+function syncActiveSpecs(lines,original){
+  const before=talentMap(original),now=talentMap(lines);
+  const specs=original.filter(l=>l.startsWith('spec|'));
+  const seen=new Set(),changed=[];
+  for(const raw of specs){
+    const parts=raw.split('|'),cls=parts[1];
+    if(seen.has(cls))throw Error('Duplicate dual-build record for class '+cls);
+    seen.add(cls);
+    const oldTal=before.get(cls),newTal=now.get(cls);
+    if(!oldTal||!newTal||rankSignature(oldTal.ranks)===rankSignature(newTal.ranks))continue;
+    const slot=Number(parts[2]);
+    if(parts.length<5||!(parts[2]==='0'||parts[2]==='1')||typeof parts[slot+3]!=='string')
+      throw Error('Unknown dual-build format for class '+cls+'; cannot safely export talent edits');
+    if(rankSignature(parts[slot+3])!==rankSignature(oldTal.ranks))
+      throw Error('Active dual-build does not match imported talents for class '+cls+'; refusing an unsafe edit');
+    const index=lines.findIndex(l=>l.startsWith('spec|'+cls+'|'));
+    if(index<0||lines.filter(l=>l.startsWith('spec|'+cls+'|')).length!==1)
+      throw Error('Dual-build record disappeared for class '+cls);
+    const next=lines[index].split('|');
+    if(next.length!==parts.length||next[2]!==parts[2])throw Error('Dual-build structure changed for class '+cls);
+    next[slot+3]=newTal.ranks; // NEVER change the inactive build or its metadata
+    lines[index]=next.join('|');
+    changed.push(cls);
+  }
+  return changed;
+}
+function verifyActiveSpecs(lines,original){
+  const now=talentMap(lines),before=talentMap(original),oldSpecs=original.filter(l=>l.startsWith('spec|')),
+        newSpecs=lines.filter(l=>l.startsWith('spec|'));
+  if(oldSpecs.length!==newSpecs.length)throw Error('Dual-build record count changed');
+  for(const raw of oldSpecs){
+    const parts=raw.split('|'),cls=parts[1],matches=newSpecs.filter(l=>l.startsWith('spec|'+cls+'|'));
+    if(matches.length!==1)throw Error('Dual-build record is missing or duplicated for class '+cls);
+    const actual=matches[0].split('|');
+    if(actual.length!==parts.length)throw Error('Dual-build structure changed for class '+cls);
+    const active=Number(parts[2]);
+    const edited=before.get(cls)&&now.get(cls)&&rankSignature(before.get(cls).ranks)!==rankSignature(now.get(cls).ranks);
+    if(edited){
+      if(!(parts[2]==='0'||parts[2]==='1')||rankSignature(actual[active+3])!==rankSignature(now.get(cls).ranks))
+        throw Error('Active dual-build verification failed for class '+cls);
+      if(actual.some((part,index)=>index!==active+3&&part!==parts[index]))throw Error('Inactive dual-build or metadata changed for class '+cls);
+    }else if(matches[0]!==raw)throw Error('Unchanged dual-build record was modified for class '+cls);
+  }
+}
 function mergeAndVerify(){
   if(!syncImport())throw Error('Import a save first');
   // The ORIGINAL talent editor's serializer is e(). It converts the live Y.tal
@@ -142,6 +242,8 @@ function mergeAndVerify(){
   const itemLine='items|'+[...mergedItems].sort((a,b)=>Number(a)-Number(b)).join(',');
   if(positions.length){lines[positions[0]]=itemLine;for(let i=positions.length-1;i>=1;i--)lines.splice(positions[i],1)}
   else{let at=lines.length&&lines[lines.length-1]===''?lines.length-1:lines.length;lines.splice(at,0,itemLine)}
+  syncActiveSpecs(lines,original);
+  verifyActiveSpecs(lines,original);
   applyZones(lines);
   verifyZones(lines);
   if(perkResetDraft!==null){
@@ -160,7 +262,7 @@ function mergeAndVerify(){
   if(JSON.stringify(before)!==JSON.stringify(after))throw Error('Talent/XP verification failed');
   // Confirm we did not drop or rewrite unrelated records.
   const withoutItems=x=>x.split(/\r?\n/).filter(l=>!l.startsWith('items|')).join('\n');
-  const withoutEdits=x=>x.split(/\r?\n/).filter(l=>!l.startsWith('items|')&&!/^(beat|open)\|\d+\|/.test(l)&&!(perkResetDraft!==null&&l.startsWith('resets|'))).join('\n');
+  const withoutEdits=x=>x.split(/\r?\n/).filter(l=>!l.startsWith('items|')&&!/^(beat|unlock|spec)\|\d+\|/.test(l)&&!(perkResetDraft!==null&&l.startsWith('resets|'))).join('\n');
   if(withoutEdits(result)!==withoutEdits(talentSerialized))throw Error('Unrelated records changed');
   if(perkResetDraft!==null&&result.split(/\r?\n/).filter(l=>l.startsWith('resets|')).join('')!==perkResetDraft)throw Error('Perk reset change not preserved');
   return {result,count:[...all()].filter(id=>verifyItems.has(id)).length,classes:before.length};
@@ -168,7 +270,7 @@ function mergeAndVerify(){
 $('am-export').onclick=()=>{if(!loaded())return status('Open a save first');try{
   const {result,count,classes}=mergeAndVerify(),sealed=G(result);
   if(h(sealed)!==result)throw Error('Encryption round-trip failed');
-  download(sealed,'AzerothSurvivors_Editor_v1.5.sav');
+  download(sealed,'AzerothSurvivors_Editor_v1.5.1.sav');
   status('✓ Verified export: '+classes+' talent records (XP + ranks preserved), '+count+'/498 equipment IDs.');
   document.dispatchEvent(new CustomEvent('as15:export',{detail:{success:true}}));
 }catch(err){status('Export blocked: '+err.message);console.error(err);document.dispatchEvent(new CustomEvent('as15:export',{detail:{success:false,message:err.message}}));}};
@@ -498,7 +600,7 @@ if(!bridge){console.error('v1.5 UI: save bridge unavailable');return;}
 
 // Premium masthead and in-page navigation; core editor DOM is not cloned or rewritten.
 const hero=document.createElement('header');hero.id='as15-hero';
-hero.innerHTML=`<div class="as15-brand"><div class="as15-sigil" aria-hidden="true">✦</div><div><div class="as15-eyebrow">AZEROTH SURVIVORS <span aria-hidden="true">/</span> COMMUNITY TOOLS</div><h1 class="as15-hero-title">The <em>Save Editor</em></h1><p class="as15-hero-sub">Shape your build. Complete your collection. Chart your journey through Azeroth. Everything stays in your browser.</p><div class="as15-hero-meta"><span class="as15-kicker preview">✦ v1.5 RELEASE</span><span class="as15-kicker">◆ Local save editing</span><span class="as15-kicker">○ No account required</span></div></div></div><div class="as15-hero-stats" aria-label="Editor coverage"><div class="as15-stat"><b>09</b><span>Classes</span></div><div class="as15-stat"><b>498</b><span>Gear pieces</span></div><div class="as15-stat"><b>12</b><span>Zones</span></div></div>`;
+hero.innerHTML=`<div class="as15-brand"><div class="as15-sigil" aria-hidden="true">✦</div><div><div class="as15-eyebrow">AZEROTH SURVIVORS <span aria-hidden="true">/</span> COMMUNITY TOOLS</div><h1 class="as15-hero-title">The <em>Save Editor</em></h1><p class="as15-hero-sub">Shape your build. Complete your collection. Chart your journey through Azeroth. Everything stays in your browser.</p><div class="as15-hero-meta"><span class="as15-kicker preview">✦ v1.5.1 RELEASE</span><span class="as15-kicker">◆ Local save editing</span><span class="as15-kicker">○ No account required</span></div></div></div><div class="as15-hero-stats" aria-label="Editor coverage"><div class="as15-stat"><b>09</b><span>Classes</span></div><div class="as15-stat"><b>498</b><span>Gear pieces</span></div><div class="as15-stat"><b>12</b><span>Zones</span></div></div>`;
 document.body.insertBefore(hero,document.body.firstChild);
 const navShell=document.createElement('div');navShell.id='as15-nav-shell';
 navShell.innerHTML=`<nav id="as15-nav" aria-label="Editor sections"><a class="as15-nav-link" href="#section-talents" data-part="talents" aria-current="page"><span class="as15-nav-glyph">✣</span>Talents</a><a class="as15-nav-link" href="#armory-merge" data-part="armory"><span class="as15-nav-glyph">◈</span>Armory</a><a class="as15-nav-link" href="#zone-manager" data-part="zones"><span class="as15-nav-glyph">⌖</span>Zones</a><a class="as15-nav-link" href="#as15-perks" data-part="perks"><span class="as15-nav-glyph">✧</span>Perks</a><div class="as15-nav-right"><label class="as15-current-class" for="as15-class-select">CLASS <select id="as15-class-select" aria-label="Editing class"></select></label><button type="button" id="as15-theme" title="Switch color theme" aria-label="Switch light or dark theme">☼</button></div></nav>`;
