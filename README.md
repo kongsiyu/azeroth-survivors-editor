@@ -1,43 +1,40 @@
-# Azeroth Survivors — Save Editor v1.5.1
+# Azeroth Survivors Save Editor — v1.5.2 safety update
 
-**[Use the editor online](https://yssadora.github.io/azeroth-survivors-editor/)**
+**[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)**
 
-Unofficial browser-based save editor for **Azeroth Survivors**. The app edits and encrypts saves locally in your browser; nothing is uploaded to this repository or a server.
+> **October 2026 game compatibility warning:** Players have reported edited saves reverting when a run starts or ends. We have **not verified** game-side persistence of editor changes with the latest game build. **Back up your save and avoid using this tool on progress you cannot afford to lose.**
+
+## Critical: importing a save replaces all account progress
+
+The game's **Import Save** replaces the entire account, including equipment, achievements and Codex discoveries. It **does not merge** with progress earned since the file was exported. Always begin from a fresh in-game export, retain that untouched original separately, and test in a separate browser profile if possible.
+
+## Why we added safeguards
+
+Some saves have no `hero|` or `talent|` record for a class the player hasn't initialized yet. For example, adding `talent|9|1000000|` and `beat|9|...` to a Rogue-only account does not also establish Warlock-specific hero, equipment and open-zone records. The newest build may initialize that class anew and overwrite the synthetic progress. v1.5.2 blocks these unsafe exports. Play the class once in-game and export a fresh save before editing that class.
+
+Unchanged Codex (`seen|`), achievements, statistics, hero and equipped-item records are now explicitly verified in the generated save. **Passing these checks means only that our file was produced consistently; it does not prove the game will keep it.**
 
 ## Features
 
-- Talent editor for all **9 classes**, including talent XP and ranks.
-- Equipment Armory with **498 pieces**, search and collected/missing filters.
-- Zone progression manager for **12 zones**, including bulk prerequisite clearing.
-- Experimental restoration of permanent perk resets.
-- Unified `.sav` export, class synchronization and a sticky export bar.
+- Talent trees and XP for 9 classes.
+- Equipment Armory (498 pieces), filtering and search.
+- Zone completion management (12 zones).
+- Perk reset recovery (experimental).
+- Sticky Export Save bar, class navigation and change indicators.
+- Offline processing in your browser and verified encrypted export.
 
-## v1.5.1 — Compatibility update
+## Reporting persistence problems
 
-The game introduced **dual talent specializations** in newer saves. These saves have both a `talent|...` record and a `spec|...` record; older versions of the editor only updated the talent record. **v1.5.1 updates the selected specialization's saved ranks when talents change**, while preserving the inactive spec, XP and unrelated records.
+Please preserve and privately share (1) a *fresh untouched game export*, (2) the *editor-exported save*, and (3) the *game export after the revert*, plus your game version and whether you use browser or Windows. **Avoid publicly posting a save**, which may contain account or character details.
 
-Zone handling now recognizes both legacy `unlock|class|number` and modern `open|class|zone` formats. It retains modern `open` records without rewriting them and updates legacy numeric unlock progress when zone completions change. Unchanged zone records are preserved.
+## Archive
 
-The export still verifies equipment, talents, specialization synchronization and encryption round trips. The `spec` and legacy `unlock` fixes were tested in a browser against sample saves. **Game-side persistence after the newest game update has not yet been confirmed.** Please test with a backup.
-
-## Instructions
-
-1. Back up your original game save.
-2. Open the [online editor](https://yssadora.github.io/azeroth-survivors-editor/).
-3. Import your `.sav`, make changes and click **Export Save**.
-4. Import the exported file in the game and verify it retained the changes.
-
-The export downloads a modified save file; it does not directly modify the save stored in the game. Zone bulk progress and perk reset restoration are experimental.
-
-## Previous versions
-
-- [v1.5 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.html)
-- [v1.4 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
+- [Previous v1.5.1](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.1.html)
+- [v1.5](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.html)
+- [v1.4](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
 
 ## Credits
 
-Original Talent Editor: Unknown community creator.
+Original talent editor: unknown community creator. Armory, zone manager and integration/UI extensions: Shilen.
 
-Armory, Zone Manager, integrations and UI extensions: Shilen.
-
-Not affiliated with the developers of Azeroth Survivors.
+Unofficial community tool; not affiliated with the game's developers.
