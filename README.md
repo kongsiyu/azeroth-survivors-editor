@@ -1,45 +1,43 @@
-# Azeroth Survivors — Save Editor v1.5
+# Azeroth Survivors — Save Editor v1.5.1
 
-**[Open the editor online](https://yssadora.github.io/azeroth-survivors-editor/)**
+**[Use the editor online](https://yssadora.github.io/azeroth-survivors-editor/)**
 
-An unofficial, browser-based save editor for **Azeroth Survivors**. No installation required; your save file is processed locally in the browser.
+Unofficial browser-based save editor for **Azeroth Survivors**. The app edits and encrypts saves locally in your browser; nothing is uploaded to this repository or a server.
 
 ## Features
 
-- **Talent editor:** Interactive talent trees and XP for all 9 classes.
-- **Equipment Armory:** Track and unlock up to 498 equipment pieces, with search and collected/missing filters.
-- **Zone progression:** Mark individual zones cleared, bulk-clear prerequisites, and track progress across all 12 zones.
-- **Perk resets:** Experimental option to restore permanent perk-reset allowance.
-- **Unified export:** Download a modified `.sav` containing your changes, with talent and equipment preservation checks.
+- Talent editor for all **9 classes**, including talent XP and ranks.
+- Equipment Armory with **498 pieces**, search and collected/missing filters.
+- Zone progression manager for **12 zones**, including bulk prerequisite clearing.
+- Experimental restoration of permanent perk resets.
+- Unified `.sav` export, class synchronization and a sticky export bar.
 
-## New in v1.5
+## v1.5.1 — Compatibility update
 
-- Redesigned dark Warcraft-inspired interface.
-- **Always-visible Export Save bar**, even while scrolling.
-- Navigation shortcuts for Talents, Armory, Zones, and Perks.
-- Class selection and pending-change summaries.
-- Equipment filters, search, and collection progress.
-- Updated zone cards and mobile layout.
+The game introduced **dual talent specializations** in newer saves. These saves have both a `talent|...` record and a `spec|...` record; older versions of the editor only updated the talent record. **v1.5.1 updates the selected specialization's saved ranks when talents change**, while preserving the inactive spec, XP and unrelated records.
 
-## How to use
+Zone handling now recognizes both legacy `unlock|class|number` and modern `open|class|zone` formats. It retains modern `open` records without rewriting them and updates legacy numeric unlock progress when zone completions change. Unchanged zone records are preserved.
 
-1. **Back up your original save.**
+The export still verifies equipment, talents, specialization synchronization and encryption round trips. The `spec` and legacy `unlock` fixes were tested in a browser against sample saves. **Game-side persistence after the newest game update has not yet been confirmed.** Please test with a backup.
+
+## Instructions
+
+1. Back up your original game save.
 2. Open the [online editor](https://yssadora.github.io/azeroth-survivors-editor/).
-3. Import your `.sav` file.
-4. Edit talents, equipment, zone progress, or resets.
-5. Use **Export Save** to download your modified file, then import it into the game.
+3. Import your `.sav`, make changes and click **Export Save**.
+4. Import the exported file in the game and verify it retained the changes.
 
-Exporting downloads a new save file; it does **not** automatically apply changes in-game. Bulk zone progression and perk reset restoration remain experimental. Test with a backup first.
+The export downloads a modified save file; it does not directly modify the save stored in the game. Zone bulk progress and perk reset restoration are experimental.
 
-## Versions
+## Previous versions
 
-- [Current release — v1.5](https://yssadora.github.io/azeroth-survivors-editor/)
-- [Previous version — v1.4](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
-- [v1.5 development preview](https://yssadora.github.io/azeroth-survivors-editor/v1.5-preview.html)
+- [v1.5 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.html)
+- [v1.4 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
 
 ## Credits
 
-- **Original talent editor:** Unknown community creator. Full credit to the original author.
-- **Armory, zones, integration, and UI extensions:** Shilen.
+Original Talent Editor: Unknown community creator.
 
-Unofficial community tool; not affiliated with the game's developers.
+Armory, Zone Manager, integrations and UI extensions: Shilen.
+
+Not affiliated with the developers of Azeroth Survivors.
