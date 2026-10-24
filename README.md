@@ -1,40 +1,52 @@
-# Azeroth Survivors Save Editor — v1.5.2 safety update
+# Azeroth Survivors Save Editor v1.5.3
 
-**[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)**
+**[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)** · [Source code](https://github.com/yssadora/azeroth-survivors-editor)
 
-> **October 2026 game compatibility warning:** Players have reported edited saves reverting when a run starts or ends. We have **not verified** game-side persistence of editor changes with the latest game build. **Back up your save and avoid using this tool on progress you cannot afford to lose.**
+A free, unofficial browser-based save editor for **Azeroth Survivors**. Import a `.sav` file, edit your save, and download a modified `.sav` file. Processing happens locally in your browser.
 
-## Critical: importing a save replaces all account progress
+## What changed in v1.5.3
 
-The game's **Import Save** replaces the entire account, including equipment, achievements and Codex discoveries. It **does not merge** with progress earned since the file was exported. Always begin from a fresh in-game export, retain that untouched original separately, and test in a separate browser profile if possible.
+- **Third specialization slot supported:** Save files with an active talent-spec index of `2` (seen in an October 21 browser export) are now synchronized when ranks are edited. The inactive builds are preserved.
+- **Safer zone editing:** If a class lacks `open|`, `beat|`, and `unlock|` progression records, its zone controls are disabled instead of fabricating progression that the game may ignore or reset. Play the class in-game and export a fresh save first.
+- **Clearer browser-game guidance:** Updated the compatibility notice using a player's comparative test: the **same modified save worked in Chrome and the downloaded game but reverted after a run in Firefox**. This suggests browser-specific game persistence behavior; the underlying Firefox cause remains unconfirmed.
+- **Existing protections retained:** Verification of the encrypted export, talent XP/ranks, specialization synchronization, equipment, and preservation of unrelated Codex/character/achievement records.
 
-## Why we added safeguards
+## Browser game vs. downloaded game
 
-Some saves have no `hero|` or `talent|` record for a class the player hasn't initialized yet. For example, adding `talent|9|1000000|` and `beat|9|...` to a Rogue-only account does not also establish Warlock-specific hero, equipment and open-zone records. The newest build may initialize that class anew and overwrite the synthetic progress. v1.5.2 blocks these unsafe exports. Play the class once in-game and export a fresh save before editing that class.
+The reported Firefox problem happens **in the browser version of the game**, not necessarily in the web-based save editor itself. If your game resets imported progression in Firefox, try playing and importing in Chrome or in the downloaded version.
 
-Unchanged Codex (`seen|`), achievements, statistics, hero and equipped-item records are now explicitly verified in the generated save. **Passing these checks means only that our file was produced consistently; it does not prove the game will keep it.**
+**Important:** We cannot change how Firefox or the game's browser version stores/autosaves progress. v1.5.3 addresses editor bugs and provides better safeguards, **not a proven fix to the Firefox game's persistence issue**. One player's Chrome and PC success does not guarantee every browser or game build behaves the same.
 
 ## Features
 
-- Talent trees and XP for 9 classes.
-- Equipment Armory (498 pieces), filtering and search.
-- Zone completion management (12 zones).
-- Perk reset recovery (experimental).
-- Sticky Export Save bar, class navigation and change indicators.
-- Offline processing in your browser and verified encrypted export.
+- Interactive talent editing and XP for **9 classes**
+- Equipment Armory with **498 pieces**, rarity tracking, search, and missing/collected filters
+- Progression editing for **12 zones**, including prerequisite clearing
+- Experimental permanent perk-reset restoration
+- Unified export with a sticky Export Save button
+- Class navigation, change indicators, and dark/light appearance
 
-## Reporting persistence problems
+## How to use safely
 
-Please preserve and privately share (1) a *fresh untouched game export*, (2) the *editor-exported save*, and (3) the *game export after the revert*, plus your game version and whether you use browser or Windows. **Avoid publicly posting a save**, which may contain account or character details.
+1. Export a **fresh save from the game** you plan to use.
+2. Keep that original somewhere safe. This editor can also download an untouched backup.
+3. Import the fresh file at the [online editor](https://yssadora.github.io/azeroth-survivors-editor/), make your changes, and click **Export Save**.
+4. Import the modified file into the game. **An in-game import replaces the full account save, including Codex discoveries; it does not merge newer progress.**
+5. In the browser game, check immediately after import, then again after a completed run. If the game reverts, stop and restore your backup.
 
-## Archive
+The editor validates what it writes; it cannot guarantee the game will persist those changes.
 
-- [Previous v1.5.1](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.1.html)
-- [v1.5](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.html)
-- [v1.4](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
+## Previous releases
+
+- [v1.5.2 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.2.html)
+- [v1.5.1 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.1.html)
+- [v1.5 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.5.html)
+- [v1.4 archive](https://yssadora.github.io/azeroth-survivors-editor/releases/v1.4.html)
 
 ## Credits
 
-Original talent editor: unknown community creator. Armory, zone manager and integration/UI extensions: Shilen.
+**Original Talent Editor:** Unknown community creator — credit to the original author.
 
-Unofficial community tool; not affiliated with the game's developers.
+**Armory, Zone Manager, integrations, and UI extensions:** Shilen.
+
+This is an unofficial community tool and is not affiliated with the game's developers.
