@@ -46,8 +46,8 @@
         if(!found){
           const namedId=/^(.+?)\s+([a-z][a-z0-9_]*:[a-z0-9_:]+|legendaryset|armoryoflegends|setbonus|sharedset|set8|wardrobe)$/.exec(body);
           if(namedId)result=translate(namedId[1],locale,depth+1)+' '+namedId[2];
-          else if(/;\s|；/.test(body)){
-            const parts=body.split(/;\s+|；/),translated=parts.map(part=>translate(part,locale,depth+1));
+          else if(/;\s|；|、/.test(body)){
+            const parts=body.split(/;\s+|；|、/),translated=parts.map(part=>translate(part,locale,depth+1));
             if(parts.some((part,i)=>part!==translated[i]))result=translated.join(locale==='en'?'; ':'；');
           }else if(/\s[·/×]\s/.test(body))result=body.split(/(\s[·/×]\s)/).map((part,i)=>i%2?part:translate(part,locale,depth+1)).join('');
         }

@@ -1077,7 +1077,35 @@
       "WRIST": "腕部",
       "HANDS": "手部",
       "MAIN HAND": "主手",
-      "OFF HAND": "副手"
+      "OFF HAND": "副手",
+      "Normal cleared": "普通已通关",
+      "Highest heroic clear": "最高英雄通关难度",
+      "No heroic clear": "尚无英雄通关",
+      "Normal only": "仅普通",
+      "Batch difficulty": "批量难度",
+      "Batch heroic difficulty": "批量英雄难度",
+      "Apply to cleared zones": "应用于已通关地图",
+      "Imported heroic progress has no normal-clear record.": "导入的英雄记录缺少普通通关记录。",
+      "Normal/heroic zone draft updated. Export all changes below.": "普通与英雄通关草稿已更新，请在底部统一导出。",
+      "Heroic progression staged. Export and verify it in the game.": "英雄通关进度已暂存，请导出并在游戏中验证。",
+      "Normal and heroic progress restored to the imported save.": "已恢复导入时的普通与英雄通关进度。",
+      "Difficulty applied to cleared zones. Export and verify it in the game.": "已将难度应用于已通关地图，请导出并在游戏中验证。",
+      "Edit normal clearance and the highest Heroic I–V clear for each zone and class. Heroic progress also opens harder difficulties and gear star caps. Export all changes with the button at the bottom.": "逐职业设置每张地图的普通通关和英雄 I–V 最高通关等级。英雄通关还会开放更高难度与装备升星上限，完成后使用底部按钮统一导出。",
+      "Heroic I–V records the highest cleared level. Selecting Heroic also marks normal cleared; removing normal clearance removes its heroic record. Higher clears open the next level account-wide and raise this class’s gear star caps.": "英雄 I–V 表示最高已通关等级。选择英雄等级会同时标记普通通关；取消普通通关会清除该图英雄记录。高难度通关将为账号开放后续等级，并提高该职业的装备升星上限。",
+      "Unrecognized heroic progression record": "无法识别英雄通关记录",
+      "Unsupported class": "不支持该职业",
+      "Unsupported zone": "不支持该地图",
+      "Zone progression is not initialized for this class": "该职业的地图进度尚未初始化",
+      "Heroic rank must be an integer from 0 to 5": "英雄等级必须是 0–5 的整数",
+      "Clear at least one normal zone before applying a bulk difficulty": "批量设置难度前，请至少标记一张地图普通通关",
+      "Normal/heroic zone verification failed": "普通或英雄通关校验失败",
+      "Heroic I": "英雄 I",
+      "Heroic II": "英雄 II",
+      "Heroic III": "英雄 III",
+      "Heroic IV": "英雄 IV",
+      "Heroic V": "英雄 V",
+      "Costs of unlocked races": "已解锁种族的费用",
+      "This edits clear history. Choose the difficulty of your next run in the game.": "这里编辑的是通关历史；下一局的出战难度请在游戏中选择。"
     }
   },
   "patterns": [
@@ -1468,6 +1496,34 @@
     {
       "en": "{details}. Talent XP is not the same as points: the game works out your earned points from the XP and drops spent talents it cannot afford.",
       "zh-CN": "{details}。天赋经验与天赋点不同：游戏根据经验计算可用点数，并移除超出额度的已分配天赋。"
+    },
+    {
+      "en": "{name} highest heroic clear",
+      "zh-CN": "{name}最高英雄通关难度"
+    },
+    {
+      "en": "Imported heroic rank {rank}",
+      "zh-CN": "导入的英雄等级 {rank}"
+    },
+    {
+      "en": "{count} heroic zones",
+      "zh-CN": "{count} 张英雄通关地图"
+    },
+    {
+      "en": "Zone controls unavailable: {message}",
+      "zh-CN": "地图控制不可用：{message}"
+    },
+    {
+      "en": "Duplicate {kind} record for class {id}",
+      "zh-CN": "职业 {id} 的 {kind} 记录重复"
+    },
+    {
+      "en": "Invalid or duplicate heroic zone entry: {record}",
+      "zh-CN": "英雄地图条目无效或重复：{record}"
+    },
+    {
+      "en": "Unrecognized imported heroic rank: {record}",
+      "zh-CN": "无法识别导入的英雄等级：{record}"
     }
   ],
   "source": {

@@ -1,8 +1,18 @@
-# Azeroth Survivors Save Editor v1.6.1
+# Azeroth Survivors Save Editor v1.7.0
 
 **[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)** · [Source code](https://github.com/yssadora/azeroth-survivors-editor)
 
 A free, unofficial browser-based save editor for **Azeroth Survivors**. Import a `.sav` file, edit your save, and download a modified `.sav` file. Processing happens locally in your browser.
+
+## What changed in v1.7.0
+
+- **Heroic map clears:** Set the highest Heroic I–V clear per class and zone, alongside normal clearance. Heroic progress is saved in the actual `hbeat|class|zone:rank,...` record.
+- **Bulk difficulty and restore:** Apply a difficulty to the selected class's normal-cleared zones, or restore all imported normal/heroic progress. Selecting Heroic also marks normal cleared; clearing normal removes that zone's heroic record.
+- **Verified export:** Heroic-only changes appear in the dirty summary and pass record-level verification, encrypted export and reimport. Unknown future zones/ranks and unrelated save data are preserved.
+- **Race purchases recognized:** Saves with purchased race unlocks now flag their unmodeled point cost, instead of treating it as free. Exact balance targeting remains available for the original tested sample.
+- **Further field research:** `pets` selects companion looks and `glow` stores weapon glow. Gear stars, cosmetic catalogs, equipped gear and other remaining configuration work are documented in [the progression and next-features report](docs/progression-and-next-features.md).
+
+The map panel edits **clear history**. Choose the next run's difficulty separately in the game. Heroic game compatibility still needs the isolated Heroic III test described in the report.
 
 ## What changed in v1.6.1
 
@@ -26,12 +36,13 @@ Developer checks:
 
 ```text
 node tools/build-resources.cjs
-node --test tests/resources.test.cjs tests/i18n.test.cjs
+node --test tests/resources.test.cjs tests/i18n.test.cjs tests/zones.test.cjs
 node tests/resources.browser.cjs <sample.sav>
 node tests/i18n.browser.cjs <sample.sav>
+node tests/zones.browser.cjs <sample.sav>
 ```
 
-The build embeds `data/resource-catalog.json`, `data/i18n.json`, `src/resources*` and `src/i18n*` into `index.html`; no network access is required when using the editor. Browser integration tests require Playwright and Edge; set `PLAYWRIGHT_MODULE` to the installed Playwright module path if needed.
+The build embeds `data/resource-catalog.json`, `data/i18n.json`, `src/resources*`, `src/zones*` and `src/i18n*` into `index.html`; no network access is required when using the editor. Browser integration tests require Playwright and Edge; set `PLAYWRIGHT_MODULE` to the installed Playwright module path if needed.
 
 ## What changed in v1.5.3
 

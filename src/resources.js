@@ -97,6 +97,7 @@
       // Purchased cosmetics consume points too. Until their version-specific
       // costs are known, do not advertise a complete balance or target solver.
       if(this.payload('tabard'))unknown.push('已购买战袍的费用');
+      if(this.payload('races'))unknown.push('已解锁种族的费用');
       const maximum=[...this.achievements.values()].reduce((sum,a)=>sum+a.points,0)-spent;
       return {earned,spent,available:earned-spent,maximum,complete:unknown.length===0,unknown};
     }

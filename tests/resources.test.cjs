@@ -41,3 +41,9 @@ test('catalog has unique IDs, positive rewards and sample-compatible perk costs'
  const m=new Model(['ach|class:hunter,class:mage,class:paladin,class:warrior,count:caches100,count:gold50k,count:gold5k,count:guardians100,count:kills100k,count:kills10k,count:runs10,feat:bare,feat:kills2500,feat:kills6000,feat:lairs,pieces:25,talents:1,talents:9,zone:ab,zone:arena,zone:duskwood,zone:elwynn,zone:feralas,zone:sm,zone:ungoro,zone:wsg','perk|banish:1,companion:1,instinct_gold:1,keen:1,leash:3,opening:1,paws:3,rerolls:1'],catalog);
  assert.equal(m.balance().earned,405);assert.equal(m.balance().spent,315);assert.equal(m.balance().available,90);m.setAvailable(95,200);assert.equal(m.balance().available,95);
 });
+
+test('unlocked races are recognized as an additional point cost, not a free unlock',()=>{
+ const m=new Model(['ach|old:a','perk|test:1','races|1,2'],synthetic);
+ assert.equal(m.balance().complete,false);assert.ok(m.balance().unknown.includes('已解锁种族的费用'));
+ assert.throws(()=>m.setAvailable(100));assert.equal(m.snapshot().changed,false);
+});

@@ -52,3 +52,8 @@ test('every bundled talent name and description has a Chinese translation',()=>{
  }
  assert.ok(count>340);
 });
+
+test('combined tabard and race cost notices translate without mixed-language text',()=>{
+ const raw='未能完整计算：已购买战袍的费用、已解锁种族的费用。原始记录会保留，可逐项编辑已知成就。';
+ const translated=t(raw,'en');assert.ok(!/[\u3400-\u9fff]/.test(translated));assert.ok(translated.includes('Costs of unlocked races'));assert.ok(translated.includes('Costs of purchased tabards'));
+});
