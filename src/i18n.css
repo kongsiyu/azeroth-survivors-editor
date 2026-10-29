@@ -1,0 +1,3 @@
+.as-language-picker{display:flex;align-items:center;flex:none}.as-language-picker select{max-width:110px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);font:12px var(--mono);cursor:pointer}
+html[lang="zh-CN"] .as15-nav-link{letter-spacing:.02em}html[lang="zh-CN"] .as15-hero-title{font-family:var(--sans);letter-spacing:.04em}html[lang="zh-CN"] .as-resource-panel .hint{line-height:1.7}
+@media(max-width:700px){#as15-nav{flex-wrap:wrap;gap:5px;padding-top:6px;padding-bottom:6px}.as15-nav-right{margin-left:auto;gap:7px}.as-language-picker select{max-width:95px;font-size:11px;padding:6px}.as15-nav-link{white-space:nowrap}}

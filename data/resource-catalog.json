@@ -1,0 +1,627 @@
+{
+  "source": {
+    "url": "https://wow.aethus.pl/wenilla_bg.wasm?v=9ffee4d340dd",
+    "retrieved": "2026-10-29",
+    "sha256": "d3db2a367b8abc9a5e6fb8a4786edf99767e31ec156cff5b9c414aae16d476f7",
+    "status": "experimental-version-match"
+  },
+  "achievements": [
+    {
+      "id": "armoryoflegends",
+      "name": "armoryoflegends",
+      "points": 50
+    },
+    {
+      "id": "class:druid",
+      "name": "德鲁伊获胜",
+      "points": 10
+    },
+    {
+      "id": "class:hunter",
+      "name": "猎人获胜",
+      "points": 10
+    },
+    {
+      "id": "class:mage",
+      "name": "法师获胜",
+      "points": 10
+    },
+    {
+      "id": "class:paladin",
+      "name": "圣骑士获胜",
+      "points": 10
+    },
+    {
+      "id": "class:priest",
+      "name": "牧师获胜",
+      "points": 10
+    },
+    {
+      "id": "class:rogue",
+      "name": "潜行者获胜",
+      "points": 10
+    },
+    {
+      "id": "class:shaman",
+      "name": "萨满获胜",
+      "points": 10
+    },
+    {
+      "id": "class:warlock",
+      "name": "术士获胜",
+      "points": 10
+    },
+    {
+      "id": "class:warrior",
+      "name": "战士获胜",
+      "points": 10
+    },
+    {
+      "id": "classlast:druid",
+      "name": "德鲁伊安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:hunter",
+      "name": "猎人安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:mage",
+      "name": "法师安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:paladin",
+      "name": "圣骑士安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:priest",
+      "name": "牧师安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:rogue",
+      "name": "潜行者安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:shaman",
+      "name": "萨满安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:warlock",
+      "name": "术士安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "classlast:warrior",
+      "name": "战士安其拉挑战",
+      "points": 25
+    },
+    {
+      "id": "codex:100",
+      "name": "发现全部饰品图鉴",
+      "points": 25
+    },
+    {
+      "id": "codex:50",
+      "name": "发现一半饰品图鉴",
+      "points": 10
+    },
+    {
+      "id": "count:bosses100",
+      "name": "击败 100 个首领",
+      "points": 10
+    },
+    {
+      "id": "count:caches100",
+      "name": "累计开启 100 个宝箱",
+      "points": 10
+    },
+    {
+      "id": "count:gold50k",
+      "name": "累计金币 50000",
+      "points": 25
+    },
+    {
+      "id": "count:gold5k",
+      "name": "累计金币 5000",
+      "points": 10
+    },
+    {
+      "id": "count:guardians100",
+      "name": "击败 100 个守卫",
+      "points": 10
+    },
+    {
+      "id": "count:guardians500",
+      "name": "击败 500 个守卫",
+      "points": 25
+    },
+    {
+      "id": "count:kills100k",
+      "name": "累计击杀 100000",
+      "points": 25
+    },
+    {
+      "id": "count:kills10k",
+      "name": "累计击杀 10000",
+      "points": 10
+    },
+    {
+      "id": "count:kills1m",
+      "name": "累计击杀 1000000",
+      "points": 50
+    },
+    {
+      "id": "count:runs10",
+      "name": "完成 10 局",
+      "points": 10
+    },
+    {
+      "id": "count:runs100",
+      "name": "完成 100 局",
+      "points": 10
+    },
+    {
+      "id": "count:wins50",
+      "name": "获胜 50 局",
+      "points": 25
+    },
+    {
+      "id": "feat:azuregos",
+      "name": "feat:azuregos",
+      "points": 25
+    },
+    {
+      "id": "feat:bare",
+      "name": "不穿装备获胜",
+      "points": 25
+    },
+    {
+      "id": "feat:bossmarks50",
+      "name": "feat:bossmarks50",
+      "points": 50
+    },
+    {
+      "id": "feat:cthun",
+      "name": "feat:cthun",
+      "points": 50
+    },
+    {
+      "id": "feat:endless25",
+      "name": "feat:endless25",
+      "points": 10
+    },
+    {
+      "id": "feat:endless3",
+      "name": "feat:endless3",
+      "points": 10
+    },
+    {
+      "id": "feat:endless30",
+      "name": "feat:endless30",
+      "points": 25
+    },
+    {
+      "id": "feat:endless40",
+      "name": "feat:endless40",
+      "points": 50
+    },
+    {
+      "id": "feat:endless6",
+      "name": "feat:endless6",
+      "points": 25
+    },
+    {
+      "id": "feat:gordok",
+      "name": "feat:gordok",
+      "points": 25
+    },
+    {
+      "id": "feat:hakkar",
+      "name": "feat:hakkar",
+      "points": 25
+    },
+    {
+      "id": "feat:herod",
+      "name": "feat:herod",
+      "points": 25
+    },
+    {
+      "id": "feat:kazzak",
+      "name": "feat:kazzak",
+      "points": 25
+    },
+    {
+      "id": "feat:kills2500",
+      "name": "单局击杀 2500",
+      "points": 10
+    },
+    {
+      "id": "feat:kills6000",
+      "name": "单局击杀 6000",
+      "points": 25
+    },
+    {
+      "id": "feat:kovork",
+      "name": "feat:kovork",
+      "points": 10
+    },
+    {
+      "id": "feat:lairs",
+      "name": "巢穴挑战",
+      "points": 25
+    },
+    {
+      "id": "feat:marks100",
+      "name": "feat:marks100",
+      "points": 25
+    },
+    {
+      "id": "feat:mosh",
+      "name": "feat:mosh",
+      "points": 25
+    },
+    {
+      "id": "feat:nefarian",
+      "name": "feat:nefarian",
+      "points": 25
+    },
+    {
+      "id": "feat:nou",
+      "name": "feat:nou",
+      "points": 25
+    },
+    {
+      "id": "feat:odds",
+      "name": "feat:odds",
+      "points": 50
+    },
+    {
+      "id": "feat:stitches",
+      "name": "feat:stitches",
+      "points": 10
+    },
+    {
+      "id": "feat:thrifty",
+      "name": "feat:thrifty",
+      "points": 25
+    },
+    {
+      "id": "feat:vancleef",
+      "name": "feat:vancleef",
+      "points": 10
+    },
+    {
+      "id": "legendaryset",
+      "name": "收齐一个职业的传说装备",
+      "points": 25
+    },
+    {
+      "id": "pieces:100",
+      "name": "收集 100 件装备",
+      "points": 10
+    },
+    {
+      "id": "pieces:25",
+      "name": "收集 25 件装备",
+      "points": 10
+    },
+    {
+      "id": "pieces:250",
+      "name": "收集 250 件装备",
+      "points": 25
+    },
+    {
+      "id": "pieces:all",
+      "name": "收集全部装备",
+      "points": 50
+    },
+    {
+      "id": "set8",
+      "name": "set8",
+      "points": 10
+    },
+    {
+      "id": "setbonus",
+      "name": "setbonus",
+      "points": 10
+    },
+    {
+      "id": "sharedset",
+      "name": "sharedset",
+      "points": 25
+    },
+    {
+      "id": "stars:1",
+      "name": "stars:1",
+      "points": 10
+    },
+    {
+      "id": "stars:3",
+      "name": "stars:3",
+      "points": 10
+    },
+    {
+      "id": "talents:1",
+      "name": "一个职业获得全部天赋点",
+      "points": 25
+    },
+    {
+      "id": "talents:9",
+      "name": "全部职业获得全部天赋点",
+      "points": 50
+    },
+    {
+      "id": "wardrobe",
+      "name": "wardrobe",
+      "points": 25
+    },
+    {
+      "id": "zone9:ab",
+      "name": "阿拉希盆地全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:aq",
+      "name": "安其拉全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:arena",
+      "name": "古拉巴什竞技场全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:av",
+      "name": "奥特兰克山谷全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:brm",
+      "name": "黑石山全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:duskwood",
+      "name": "暮色森林全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:elwynn",
+      "name": "艾尔文森林全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:feralas",
+      "name": "菲拉斯全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:naxx",
+      "name": "纳克萨玛斯全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:sm",
+      "name": "血色修道院全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:ungoro",
+      "name": "安戈洛环形山全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone9:wsg",
+      "name": "战歌峡谷全职业通关",
+      "points": 25
+    },
+    {
+      "id": "zone:ab",
+      "name": "阿拉希盆地通关",
+      "points": 10
+    },
+    {
+      "id": "zone:aq",
+      "name": "安其拉通关",
+      "points": 25
+    },
+    {
+      "id": "zone:arena",
+      "name": "古拉巴什竞技场通关",
+      "points": 15
+    },
+    {
+      "id": "zone:av",
+      "name": "奥特兰克山谷通关",
+      "points": 15
+    },
+    {
+      "id": "zone:brm",
+      "name": "黑石山通关",
+      "points": 20
+    },
+    {
+      "id": "zone:duskwood",
+      "name": "暮色森林通关",
+      "points": 10
+    },
+    {
+      "id": "zone:elwynn",
+      "name": "艾尔文森林通关",
+      "points": 10
+    },
+    {
+      "id": "zone:feralas",
+      "name": "菲拉斯通关",
+      "points": 15
+    },
+    {
+      "id": "zone:naxx",
+      "name": "纳克萨玛斯通关",
+      "points": 30
+    },
+    {
+      "id": "zone:sm",
+      "name": "血色修道院通关",
+      "points": 15
+    },
+    {
+      "id": "zone:ungoro",
+      "name": "安戈洛环形山通关",
+      "points": 10
+    },
+    {
+      "id": "zone:wsg",
+      "name": "战歌峡谷通关",
+      "points": 10
+    }
+  ],
+  "perks": [
+    {
+      "id": "rerolls",
+      "name": "Second Thoughts",
+      "costs": [
+        15,
+        25,
+        35
+      ],
+      "requires": "count:runs10",
+      "requiresPerk": "",
+      "label": "额外重抽"
+    },
+    {
+      "id": "banish",
+      "name": "Banish",
+      "costs": [
+        20,
+        30,
+        40
+      ],
+      "requires": "zone:elwynn",
+      "requiresPerk": "",
+      "label": "放逐"
+    },
+    {
+      "id": "skip",
+      "name": "Skip",
+      "costs": [
+        15
+      ],
+      "requires": "zone:duskwood",
+      "requiresPerk": "",
+      "label": "跳过"
+    },
+    {
+      "id": "opening",
+      "name": "Opening Hand",
+      "costs": [
+        30
+      ],
+      "requires": "feat:kills2500",
+      "requiresPerk": "",
+      "label": "起手牌"
+    },
+    {
+      "id": "veteran",
+      "name": "Veteran's Lessons",
+      "costs": [
+        20,
+        35
+      ],
+      "requires": "zone:wsg",
+      "requiresPerk": "",
+      "label": "老兵经验"
+    },
+    {
+      "id": "keen",
+      "name": "Keen Eye",
+      "costs": [
+        20,
+        35
+      ],
+      "requires": "pieces:25",
+      "requiresPerk": "",
+      "label": "敏锐目光"
+    },
+    {
+      "id": "companion",
+      "name": "Companion",
+      "costs": [
+        50
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "",
+      "label": "拾取伙伴"
+    },
+    {
+      "id": "leash",
+      "name": "Long Leash",
+      "costs": [
+        15,
+        25,
+        35
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "companion",
+      "label": "拾取距离"
+    },
+    {
+      "id": "paws",
+      "name": "Quick Paws",
+      "costs": [
+        15,
+        25,
+        35
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "companion",
+      "label": "伙伴速度"
+    },
+    {
+      "id": "instinct_gold",
+      "name": "Gold-sniffer",
+      "costs": [
+        30
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "companion",
+      "label": "金币嗅觉"
+    },
+    {
+      "id": "instinct_wisps",
+      "name": "Wisp-herder",
+      "costs": [
+        30
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "companion",
+      "label": "经验嗅觉"
+    },
+    {
+      "id": "instinct_runes",
+      "name": "Rune-hound",
+      "costs": [
+        30
+      ],
+      "requires": "count:gold5k",
+      "requiresPerk": "companion",
+      "label": "符文嗅觉"
+    },
+    {
+      "id": "second",
+      "name": "Second Companion",
+      "costs": [
+        150
+      ],
+      "requires": "count:gold50k",
+      "requiresPerk": "companion",
+      "label": "第二伙伴"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const root=path.join(__dirname,'..');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/^\uFEFF/,'').replace(/\r\n/g,'\n').trim();
+const catalog=JSON.parse(read('data/resource-catalog.json'));
+const bundle='<script id="as-resource-model">\nwindow.AS_RESOURCE_CATALOG='+JSON.stringify(catalog).replace(/</g,'\\u003c')+';\n'+read('src/resources.js')+'\n</script>';
+const ui='<style id="as-resource-style">\n'+read('src/resources.css')+'\n</style>\n<script id="as-resource-ui">\n'+read('src/resources-ui.js')+'\n</script>';
+const i18nCatalog=JSON.parse(read('data/i18n.json'));
+const i18n='<style id="as-i18n-style">\n'+read('src/i18n.css')+'\n</style>\n<script id="as-i18n">\nwindow.AS_I18N_CATALOG='+JSON.stringify(i18nCatalog).replace(/</g,'\\u003c')+';\n'+read('src/i18n.js')+'\n</script>';
+let html=read('index.html');
+html=html.replace(/<style id="as-i18n-style">[\s\S]*?<\/style>\s*<script id="as-i18n">[\s\S]*?<\/script>\s*/,'');
+html=html.replace(/<script id="as-resource-model">[\s\S]*?<\/script>\s*/,'').replace(/<style id="as-resource-style">[\s\S]*?<\/style>\s*<script id="as-resource-ui">[\s\S]*?<\/script>\s*/,'');
+const boundary="<script>\n(()=>{'use strict';\nconst $=id=>document.getElementById(id);\nconst zoneCatalog=";
+if(!html.includes(boundary))throw Error('Could not locate extension boundary');
+html=html.replace(boundary,()=>bundle+'\n'+boundary).replace('</body>',()=>ui+'\n'+i18n+'\n</body>');
+fs.writeFileSync(path.join(root,'index.html'),html+'\n');
+console.log('Embedded resources and bilingual UI in standalone index.html.');

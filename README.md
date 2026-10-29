@@ -1,8 +1,37 @@
-# Azeroth Survivors Save Editor v1.5.3
+# Azeroth Survivors Save Editor v1.6.1
 
 **[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)** · [Source code](https://github.com/yssadora/azeroth-survivors-editor)
 
 A free, unofficial browser-based save editor for **Azeroth Survivors**. Import a `.sav` file, edit your save, and download a modified `.sav` file. Processing happens locally in your browser.
+
+## What changed in v1.6.1
+
+- **English / 简体中文:** Use the language selector at the top right. The editor follows the browser language initially and remembers your choice.
+- **Full interface coverage:** Navigation, imports, talents and descriptions, equipment, zones, achievements, marks, perks, dialogs, tooltips and dynamic status/error messages share one language system.
+- **Drafts are preserved:** Switching languages changes displayed copy while retaining input values, pending edits, character names and save identifiers.
+- **Offline translations:** All translations are embedded in `index.html`; the existing standalone workflow still works. See [localization maintenance](docs/localization.md).
+- **Game feedback:** The user confirmed the achievement-point and marks tests passed before this localization update.
+
+## What changed in v1.6.0
+
+- **Achievement points and marks:** A new Chinese resource panel shows earned points, cumulative perk costs and calculated available points. Set a target available balance by adding/removing real achievements, or edit individual achievements.
+- **Per-class marks:** Edit each class independently, including creating a missing marks record. Lifetime `stat.marks` stays independent.
+- **Permanent perks:** Edit ranks using costs extracted from the official October 29 web client, or refund perks. Imported timestamps and unknown records are preserved.
+- **Unified export:** Resource drafts participate in the verified encrypted export, dirty summary and restore controls. Invalid mark input blocks export. Reimporting the same file starts fresh drafts.
+- **Experimental game compatibility:** The supplied sample calculates to **405 earned − 315 spent = 90 available points**, with **445 Mage marks**. The game must still confirm these values. Purchased tabards or unknown achievements/perks disable exact balance targeting rather than treating unknown costs/rewards as zero.
+
+The editor remains a standalone HTML file. Open `index.html`, choose **成就点 / 印记**, import a save and export with the existing gold button. See [the testing guide](docs/testing-resources.md) for an isolated two-step game test.
+
+Developer checks:
+
+```text
+node tools/build-resources.cjs
+node --test tests/resources.test.cjs tests/i18n.test.cjs
+node tests/resources.browser.cjs <sample.sav>
+node tests/i18n.browser.cjs <sample.sav>
+```
+
+The build embeds `data/resource-catalog.json`, `data/i18n.json`, `src/resources*` and `src/i18n*` into `index.html`; no network access is required when using the editor. Browser integration tests require Playwright and Edge; set `PLAYWRIGHT_MODULE` to the installed Playwright module path if needed.
 
 ## What changed in v1.5.3
 
