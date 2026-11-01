@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.join(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/^\uFEFF/,'').replace(/\r\n/g,'\n').trim();
 const catalog=JSON.parse(read('data/resource-catalog.json'));
-const bundle='<script id="as-resource-model">\nwindow.AS_RESOURCE_CATALOG='+JSON.stringify(catalog).replace(/</g,'\\u003c')+';\n'+read('src/resources.js')+'\n'+read('src/zones.js')+'\n</script>';
+const bundle='<script id="as-resource-model">\nwindow.AS_RESOURCE_CATALOG='+JSON.stringify(catalog).replace(/</g,'\\u003c')+';\n'+read('src/resources.js')+'\n'+read('src/zones.js')+'\n'+read('src/equipment.js')+'\n</script>';
 const ui='<style id="as-resource-style">\n'+read('src/resources.css')+'\n'+read('src/zones.css')+'\n</style>\n<script id="as-resource-ui">\n'+read('src/resources-ui.js')+'\n</script>';
 const i18nCatalog=JSON.parse(read('data/i18n.json'));
 const i18n='<style id="as-i18n-style">\n'+read('src/i18n.css')+'\n</style>\n<script id="as-i18n">\nwindow.AS_I18N_CATALOG='+JSON.stringify(i18nCatalog).replace(/</g,'\\u003c')+';\n'+read('src/i18n.js')+'\n</script>';

@@ -1105,7 +1105,59 @@
       "Heroic IV": "英雄 IV",
       "Heroic V": "英雄 V",
       "Costs of unlocked races": "已解锁种族的费用",
-      "This edits clear history. Choose the difficulty of your next run in the game.": "这里编辑的是通关历史；下一局的出战难度请在游戏中选择。"
+      "This edits clear history. Choose the difficulty of your next run in the game.": "这里编辑的是通关历史；下一局的出战难度请在游戏中选择。",
+      "Unlock all 581 equipment pieces": "解锁全部 581 件装备",
+      "Unlock all 581 pieces?": "解锁全部 581 件装备？",
+      "Unlock all 581": "解锁全部 581 件",
+      "Added all 581 equipment IDs.": "已添加全部 581 件装备。",
+      "Unlock all 581 equipment pieces?": "解锁全部 581 件装备？",
+      "PvP (Alliance)": "PvP（联盟）",
+      "PvP (Horde)": "PvP（部落）",
+      "PvP Alliance set": "PvP 联盟套装",
+      "PvP Horde set": "PvP 部落套装",
+      "Legendary equipment": "传说装备",
+      "PvP (Alliance) Head": "PvP（联盟） 头部",
+      "PVP (ALLIANCE) HEAD": "PvP（联盟） 头部",
+      "PvP (Alliance) Shoulder": "PvP（联盟） 肩部",
+      "PVP (ALLIANCE) SHOULDER": "PvP（联盟） 肩部",
+      "PvP (Alliance) Chest": "PvP（联盟） 胸部",
+      "PVP (ALLIANCE) CHEST": "PvP（联盟） 胸部",
+      "PvP (Alliance) Waist": "PvP（联盟） 腰部",
+      "PVP (ALLIANCE) WAIST": "PvP（联盟） 腰部",
+      "PvP (Alliance) Legs": "PvP（联盟） 腿部",
+      "PVP (ALLIANCE) LEGS": "PvP（联盟） 腿部",
+      "PvP (Alliance) Feet": "PvP（联盟） 脚部",
+      "PVP (ALLIANCE) FEET": "PvP（联盟） 脚部",
+      "PvP (Alliance) Wrist": "PvP（联盟） 腕部",
+      "PVP (ALLIANCE) WRIST": "PvP（联盟） 腕部",
+      "PvP (Alliance) Hands": "PvP（联盟） 手部",
+      "PVP (ALLIANCE) HANDS": "PvP（联盟） 手部",
+      "PvP (Alliance) Main Hand": "PvP（联盟） 主手",
+      "PVP (ALLIANCE) MAIN HAND": "PvP（联盟） 主手",
+      "PvP (Alliance) Off Hand": "PvP（联盟） 副手",
+      "PVP (ALLIANCE) OFF HAND": "PvP（联盟） 副手",
+      "PvP (Horde) Head": "PvP（部落） 头部",
+      "PVP (HORDE) HEAD": "PvP（部落） 头部",
+      "PvP (Horde) Shoulder": "PvP（部落） 肩部",
+      "PVP (HORDE) SHOULDER": "PvP（部落） 肩部",
+      "PvP (Horde) Chest": "PvP（部落） 胸部",
+      "PVP (HORDE) CHEST": "PvP（部落） 胸部",
+      "PvP (Horde) Waist": "PvP（部落） 腰部",
+      "PVP (HORDE) WAIST": "PvP（部落） 腰部",
+      "PvP (Horde) Legs": "PvP（部落） 腿部",
+      "PVP (HORDE) LEGS": "PvP（部落） 腿部",
+      "PvP (Horde) Feet": "PvP（部落） 脚部",
+      "PVP (HORDE) FEET": "PvP（部落） 脚部",
+      "PvP (Horde) Wrist": "PvP（部落） 腕部",
+      "PVP (HORDE) WRIST": "PvP（部落） 腕部",
+      "PvP (Horde) Hands": "PvP（部落） 手部",
+      "PVP (HORDE) HANDS": "PvP（部落） 手部",
+      "PvP (Horde) Main Hand": "PvP（部落） 主手",
+      "PVP (HORDE) MAIN HAND": "PvP（部落） 主手",
+      "PvP (Horde) Off Hand": "PvP（部落） 副手",
+      "PVP (HORDE) OFF HAND": "PvP（部落） 副手",
+      "PVP (ALLIANCE)": "PvP（联盟）",
+      "PVP (HORDE)": "PvP（部落）"
     }
   },
   "patterns": [
@@ -1524,6 +1576,18 @@
     {
       "en": "Unrecognized imported heroic rank: {record}",
       "zh-CN": "无法识别导入的英雄等级：{record}"
+    },
+    {
+      "en": "{count} / {total} collected · {all} / 581 total",
+      "zh-CN": "已收藏 {count} / {total} · 全职业 {all} / 581"
+    },
+    {
+      "en": "✓ Verified export: {classes} talent records (XP + ranks preserved), {count}/581 equipment IDs; achievements, perks and marks verified.",
+      "zh-CN": "✓ 导出校验通过：{classes} 条天赋记录（经验与等级已保留）、{count}/581 件装备；成就、强化和印记已校验。"
+    },
+    {
+      "en": "{name} · {count} available pieces ({slots} slots × {tiers} equipment tiers). Save tier codes: Legendary = 4, PvP (Alliance) = 5, PvP (Horde) = 6. Shaman rare names verified; others may be placeholders.",
+      "zh-CN": "{name} · {count} 件可用装备（{slots} 个部位 × {tiers} 档装备）。存档编号：传说 = 4，PvP（联盟） = 5，PvP（部落） = 6。萨满精良装备名称已核实，其余名称可能为占位。"
     }
   ],
   "source": {

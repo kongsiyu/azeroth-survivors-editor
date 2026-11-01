@@ -1,8 +1,14 @@
-# Azeroth Survivors Save Editor v1.7.0
+# Azeroth Survivors Save Editor v1.7.1
 
 **[Open the editor](https://yssadora.github.io/azeroth-survivors-editor/)** · [Source code](https://github.com/yssadora/azeroth-survivors-editor)
 
 A free, unofficial browser-based save editor for **Azeroth Survivors**. Import a `.sav` file, edit your save, and download a modified `.sav` file. Processing happens locally in your browser.
+
+## What changed in v1.7.1
+
+- **Correct Legendary/PvP mapping:** Legendary uses save tier `4`; the two PvP sets use `5` and `6`. The old rows mislabeled Legendary as PvP and omitted the second PvP set.
+- **Complete armory:** Seven rows now include PvP (Alliance), PvP (Horde) and Legendary, with correct IDs, names, colors and collection states. All-class totals and unlock actions include **581** IDs instead of 498.
+- **Data preserved:** Opening an older save keeps its existing item IDs. This fix changes the row mapping and adds the missing tier; it does not attempt to reinterpret past user edits.
 
 ## What changed in v1.7.0
 
@@ -36,13 +42,14 @@ Developer checks:
 
 ```text
 node tools/build-resources.cjs
-node --test tests/resources.test.cjs tests/i18n.test.cjs tests/zones.test.cjs
+node --test tests/resources.test.cjs tests/i18n.test.cjs tests/zones.test.cjs tests/equipment.test.cjs
 node tests/resources.browser.cjs <sample.sav>
 node tests/i18n.browser.cjs <sample.sav>
 node tests/zones.browser.cjs <sample.sav>
+node tests/equipment.browser.cjs <sample.sav>
 ```
 
-The build embeds `data/resource-catalog.json`, `data/i18n.json`, `src/resources*`, `src/zones*` and `src/i18n*` into `index.html`; no network access is required when using the editor. Browser integration tests require Playwright and Edge; set `PLAYWRIGHT_MODULE` to the installed Playwright module path if needed.
+The build embeds `data/resource-catalog.json`, `data/i18n.json`, `src/resources*`, `src/zones*`, `src/equipment.js` and `src/i18n*` into `index.html`; no network access is required when using the editor. Browser integration tests require Playwright and Edge; set `PLAYWRIGHT_MODULE` to the installed Playwright module path if needed.
 
 ## What changed in v1.5.3
 
@@ -60,7 +67,7 @@ The reported Firefox problem happens **in the browser version of the game**, not
 ## Features
 
 - Interactive talent editing and XP for **9 classes**
-- Equipment Armory with **498 pieces**, rarity tracking, search, and missing/collected filters
+- Equipment Armory with **581 pieces across 7 equipment tiers**, rarity tracking, search, and missing/collected filters
 - Progression editing for **12 zones**, including prerequisite clearing
 - Experimental permanent perk-reset restoration
 - Unified export with a sticky Export Save button

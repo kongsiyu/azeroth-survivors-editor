@@ -63,7 +63,7 @@ const {chromium}=require(runtime),sample=process.argv[2];if(!sample)throw Error(
     await page.locator('#am-all').click();
     await page.waitForFunction(()=>document.getElementById('as15-modal').open);
     await page.evaluate(()=>ASI18n.refresh());
-    assert.equal(await page.locator('#as15-modal h2').textContent(),lang==='en'?'Unlock all 498 pieces?':'解锁全部 498 件装备？');
+    assert.equal(await page.locator('#as15-modal h2').textContent(),lang==='en'?'Unlock all 581 pieces?':'解锁全部 581 件装备？');
     await page.locator('#as15-cancel-unlock').click();
     for(const query of ['Common','普通']){
       await page.locator('#as15-equipment-search').fill(query);
